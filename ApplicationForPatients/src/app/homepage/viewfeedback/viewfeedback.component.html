@@ -1,0 +1,28 @@
+<div class="main-content">
+<div class="card">
+<div style="width: 80%; margin-left: auto; margin-right: auto;" class="feedback-table content table-responsive table-full-width">
+    <div class="card-header">
+        <h2>Our hospital feedbacks</h2>
+    </div>
+    <div class="table-responsive table-full-width">
+        <table class="table">
+            <tr>
+              <th style="width: 20%;" class="text-center">Name</th>
+              <th style="width: 60%;" class="text-center">Comment</th>
+              <th style="width: 20%;" class="text-center">Date</th>
+              <th></th>
+            </tr>
+            <tbody>
+              <ng-container *ngFor="let fdb of feedbacks">
+              <tr>
+                  <td class="text-center">{{fdb.personName}}</td>
+                  <td class="text-center">{{fdb.text}}</td>
+                  <td class="text-center">{{fdb.date| date: 'dd/MM/yyyy'}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+    </div>
+</div>
+</div>
+</div>

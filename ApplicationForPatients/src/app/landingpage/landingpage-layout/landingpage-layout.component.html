@@ -1,0 +1,142 @@
+<!-- header section starts  -->
+<div>
+    <app-navigation-bar>
+    </app-navigation-bar>
+</div>
+<!-- header section ends  -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="container">
+
+        <div class="row min-vh-100 align-items-center text-center text-md-left">
+
+            <div class="col-md-6 pr-md-5">
+                <img src="/assets/img/img_landing/Doctors-pana.svg" width="100%" alt="">
+            </div>
+
+            <div class="col-md-6 pl-md-5 content">
+                <h1><span>stay</span> safe, <span>stay</span> healthy.</h1>
+                <h3>caring for you.</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- home section ends -->
+
+<!-- about section start  -->
+
+<section class="about" id="about">
+
+    <div class="container">
+
+        <div class="row min-vh-100 align-items-center">
+
+            <div class="col-md-6 content">
+
+                <div class="box">
+
+                    <h3> ambulance services </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, suscipit.</p>
+                </div>
+
+                <div class="box">
+
+                    <h3> emergency rooms </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, suscipit.</p>
+                </div>
+
+                <div class="box">
+                    <h3> free check-ups </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa, suscipit.</p>
+                </div>
+
+            </div>
+
+            <div class="col-md-6 d-none d-md-block">
+                <img src="/assets/img/img_landing/about.png" width="100%" alt="">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- feedback section starts  -->
+<section class="feedback" id="feedback">
+    <div class="card text-center ">
+        <h1>User feedbacks</h1>
+    </div>
+    <div class="d-flex p-2">
+        <div class="row row-cols-1 row-cols-lg-6 g-4 justify-content-center">
+            <div class="col">
+              <div class="card h-100">
+                <img src="/assets/img/faces/pexels-ron-lach-10132900.jpg" class="card-img-top" >
+                <div class="card-body">
+                  <h5 class="card-title">{{feedbacks[0].personName}}</h5>
+                  <h5 class="card-title" *ngif="!feedbacks[0]">Name</h5>
+                  <p class="card-text" >{{feedbacks[0].text}}</p>
+                  <p class="card-text" *ngif="!feedbacks[0]" >Feedback</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{feedbacks[0].date| date: 'dd/MM/yyyy'}}</small>
+                  <small class="text-muted" *ngif="!feedbacks[0]">Date</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="/assets/img/faces/pexels-shvets-production-7544712.jpg" class="card-img-top" >
+                <div class="card-body">
+                  <h5 class="card-title">{{feedbacks[1].personName}}</h5>
+                  <h5 class="card-title" *ngif="!feedbacks[1]">Name</h5>
+                  <p class="card-text" >{{feedbacks[1].text}}</p>
+                  <p class="card-text" *ngif="!feedbacks[1]" >Feedback</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{feedbacks[1].date| date: 'dd/MM/yyyy'}}</small>
+                  <small class="text-muted" *ngif="!feedbacks[1]">Date</small>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card h-100">
+                <img src="/assets/img/faces/pexels-ron-lach-10132900.jpg" class="card-img-top" >
+                <div class="card-body">
+                  <h5 class="card-title">{{feedbacks[2].personName}}</h5>
+                  <h5 class="card-title" *ngif="!feedbacks[2]">Name</h5>
+                  <p class="card-text" >{{feedbacks[2].text}}</p>
+                  <p class="card-text" *ngif="!feedbacks[2]" >Feedback</p>
+                </div>
+                <div class="card-footer">
+                  <small class="text-muted">{{feedbacks[2].date| date: 'dd/MM/yyyy'}}</small>
+                  <small class="text-muted" *ngif="!feedbacks[2]">Date</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+</section>
+<!-- feedback section ends  -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="d-flex justify-content-center">
+        <h3 class="text-center">created by <span>Firma 6 devs</span> all rights reserved.</h3>
+    </div>
+</section>
+
+<!-- footer section ends -->
