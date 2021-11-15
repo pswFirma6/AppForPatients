@@ -1,0 +1,76 @@
+<div class="main-content">
+    <div class="row">
+  
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" >
+            <h2 class="title">Leave a feedback</h2>
+            <p class="category">Tell us what you think about us</p>
+          </div>
+            <div class="card-body">
+                    <form>
+
+                        <div class="row">
+                            <div class="col-md-12 pl-1">
+                                <div class="form-group" >
+                                    <div style="text-align:center">
+                                        
+                                        <label for="text">Your opinion</label>
+                                        
+                                        <input style="height: 150px" type="text" class="form-control" id="text"
+                                            placeholder="Enter text here"
+                                            required
+                                            [(ngModel)]="leaveFeedback.text" name="text" #name="ngModel">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 pl-1">
+                                <div class="form-group" >
+                                        <div style="text-align:center">
+                                            
+                                            <input #AnonymousFeedback
+                                                    id="AnonymousFeedback" 
+                                                    type="checkbox" 
+                                                    [checked]="leaveFeedback.anonymous" 
+                                                    (change)="isCheckedAnonymous(AnonymousFeedback.checked)"
+                                             /> Do you want to stay anonymous?
+                           
+                                        </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 pl-2">
+                                <div class="form-group" >
+                                        <div style="text-align:center">
+                                            
+                                            <input #PublishFeedback
+                                                id="PublishFeedback" 
+                                                type="checkbox" 
+                                                [checked]="leaveFeedback.publish" 
+                                                (change)="isCheckedPublish(PublishFeedback.checked)"
+                                            /> Do you want to publish feedback?
+                           
+                                        </div>
+                                
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 pl-2">
+                                <button (click) = "addNewFeedback()" class="btn btn-primary btn-block" >Submit</button>
+                            </div>
+                        </div>
+
+                    </form>                     
+            </div>
+        </div>
+    </div>
+</div>
