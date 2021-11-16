@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingpageLayoutComponent } from './landingpage/landingpage-layout/landingpage-layout.component';
 import { LandingpageLayoutModule } from './landingpage/landingpage-layout/landingpage-layout.module';
 import { RouterModule } from '@angular/router';
+import { RegistrationLayoutComponent } from './registration/registration-layout/registration-layout.component';
+import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
+import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 
 
 
@@ -19,6 +22,9 @@ import { RouterModule } from '@angular/router';
     AppComponent,
     HomepageLayoutComponent,
     LandingpageLayoutComponent,
+    RegistrationLayoutComponent,
+    NotFoundComponent
+
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,7 @@ import { RouterModule } from '@angular/router';
     ReactiveFormsModule,
     HomepageLayoutModule,
     LandingpageLayoutModule,
+    RegistrationLayoutModule
   ],
   providers: [ ],
   bootstrap: [AppComponent]

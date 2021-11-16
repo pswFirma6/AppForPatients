@@ -80,6 +80,7 @@
     #click:checked ~ .menu-btn i:before{
       content: "\f00d";
     }
+
     nav ul{
       position: fixed;
       top: 80px;
