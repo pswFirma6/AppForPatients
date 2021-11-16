@@ -13,11 +13,12 @@ import { LandingpageLayoutModule } from './landingpage/landingpage-layout/landin
 import { RouterModule } from '@angular/router';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     HomepageLayoutComponent,
-    LandingpageLayoutComponent
+    LandingpageLayoutComponent,
   ],
   imports: [
     BrowserModule,
