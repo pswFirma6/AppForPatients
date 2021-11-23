@@ -13,18 +13,14 @@ export class SurveyService {
     constructor(private http: HttpClient){ }
 
     public initializeSurvey(): Observable<Survey[]>{
-        return this.http.get<Survey[]>(this.surveyUrl);
+        return this.http.get<Survey[]>(this.surveyUrl + "/InitializeSurvey");
     }
 
     public addSurvey(survey: Survey[]): Observable<Survey[]>{
         for(let s of survey){
             s.rate = Number(s.rate)
+            s.personId = "1"
         }
-        var surveyObj = {
-            "personId": "1",
-            "surveyQuestions": survey
-        } 
-        console.log(surveyObj)
-        return this.http.post<Survey[]>(this.surveyUrl, surveyObj);
+        return this.http.post<Survey[]>(this.surveyUrl + "/TakeSurvey", survey);
     }
 }
