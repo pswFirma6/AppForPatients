@@ -24,7 +24,6 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
     LandingpageLayoutComponent,
     RegistrationLayoutComponent,
     NotFoundComponent
-
   ],
   imports: [
     BrowserModule,
