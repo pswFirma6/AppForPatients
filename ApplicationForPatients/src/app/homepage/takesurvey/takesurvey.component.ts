@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Survey } from 'src/app/models/survey';
+import { Survey } from 'src/app/shared/survey';
 import { NotificationService } from 'src/app/service/notification_service/notification.service';
 import { SurveyService } from 'src/app/service/survey.service';
 
