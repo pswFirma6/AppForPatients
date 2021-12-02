@@ -3,21 +3,26 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageLayoutComponent } from './homepage/homepage-layout/homepage-layout.component';
 import { LandingpageLayoutComponent } from './landingpage/landingpage-layout/landingpage-layout.component';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
+import { ActivationComponent } from './registration/activation/activation.component';
 import { RegistrationLayoutComponent } from './registration/registration-layout/registration-layout.component';
 
 const routes: Routes = [
   
-  {
-    
-    path: '',
-    component: NotFoundComponent
-   }, 
+{path: '', redirectTo: 'landingpage', pathMatch: 'full'},
 
   {
-    
    path: 'landingpage',
    component: LandingpageLayoutComponent
   }, 
+  {
+    path: 'authentication/emailconfirmation',
+    component: ActivationComponent
+  },
+  {
+    
+    path: 'pagenotfound',
+    component: NotFoundComponent
+   }, 
   {
     path: 'patient',
     component: HomepageLayoutComponent,
