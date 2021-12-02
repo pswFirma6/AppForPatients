@@ -43,7 +43,6 @@
                      Please, enter password!
                   </div>
                 </div>
-
              </div>
              
              <div class="form-group">
@@ -68,7 +67,6 @@
 
                            Correct password!
                 </div>   
-
              </div>
              
              <div class="form-group">
@@ -85,6 +83,7 @@
                         Please, enter only characters!
                      </div>
                 </div>
+
              </div>
 
              <div class="form-group">
@@ -106,6 +105,7 @@
 
              <div class="form-group">
                 <label>Email</label>
+
                 <input type="email" class="form-control" formControlName="email" id="email" ng-model="email" required/>
                 
                 <div *ngIf="regForm.controls['email'].invalid && (regForm.controls['email'].dirty || regForm.controls['email'].touched)" 
@@ -195,7 +195,6 @@
                            Please, enter number!
                         </div>
                 </div>
-             
              </div>
 
              <hr class = "zig-zag">
@@ -263,7 +262,6 @@
                         Please, enter your Rh factor!
                   </div>
                </div>
-
              </div>
 
              <div class="form-group">
@@ -312,6 +310,7 @@
                         Max height must include 3 digits!
                      </div>
                 </div>
+
              </div>
 
              <div class="form-group">
@@ -454,3 +453,4 @@
      <button type="button" class="btn btn-danger"  (click)="modal.close('Save click')">Close</button>
    </div>
  </ng-template>
+

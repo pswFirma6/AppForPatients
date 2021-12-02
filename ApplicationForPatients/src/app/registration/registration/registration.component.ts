@@ -10,12 +10,14 @@ import {Router} from "@angular/router"
 import { Registration } from 'src/app/shared/registration';
 import { RegistrationService } from 'src/app/service/registration.service';
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
 
   doctors: DoctorForReg[];
   allergies : Allergy [];
@@ -119,8 +121,6 @@ export class RegistrationComponent implements OnInit {
     this.addedAllergies.forEach((value,index)=>{
         if(value==element) this.addedAllergies.splice(index,1);
     });
-
-    
   }
 
   triggerModal(content: any) {

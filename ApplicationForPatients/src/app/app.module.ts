@@ -17,6 +17,7 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
 import { ActivationComponent } from './registration/activation/activation.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,7 @@ import { ActivationComponent } from './registration/activation/activation.compon
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule
-    
+
   ],
   providers: [ ],
   bootstrap: [AppComponent]
