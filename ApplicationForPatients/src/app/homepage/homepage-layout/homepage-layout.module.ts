@@ -7,6 +7,7 @@ import { NavbarComponent } from "../components/navbar/navbar.component";
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 import { FeedbackComponent } from "../feedback/feedback.component";
 import { MedicalrecordsComponent } from "../medicalrecords/medicalrecords.component";
+import { TakesurveyComponent } from "../takesurvey/takesurvey.component";
 import { ViewfeedbackComponent } from "../viewfeedback/viewfeedback.component";
 import { HomepageLayoutRoutes } from "./homepage-layout.routing";
 
@@ -24,7 +25,8 @@ import { HomepageLayoutRoutes } from "./homepage-layout.routing";
         SidebarComponent,
         FeedbackComponent,
         ViewfeedbackComponent,
-        MedicalrecordsComponent
+        MedicalrecordsComponent,
+        TakesurveyComponent
     ],
     exports: [
         NavbarComponent,
