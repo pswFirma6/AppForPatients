@@ -16,6 +16,7 @@ import { RegistrationLayoutModule } from './registration/registration-layout/reg
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 import { ActivationComponent } from './registration/activation/activation.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +25,7 @@ import { ActivationComponent } from './registration/activation/activation.compon
     RegistrationLayoutComponent,
     NotFoundComponent,
     ActivationComponent
+
   ],
   imports: [
     BrowserModule,
