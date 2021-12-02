@@ -22,12 +22,12 @@ export class FeedbackComponent implements OnInit {
     this.leaveFeedback.anonymous = false;
   }
 
-  public addNewFeedback(): void {
+  addNewFeedback(): void {
     if(this.leaveFeedback.text === '' || this.leaveFeedback.text === undefined){
       this.showToasterError()
       return;
     }
-    this.leaveFeedback.personId = '1';
+    this.leaveFeedback.personId = '0baad6ae-9f03-4c87-806b-3965e665754a';
   
     this.feedbackService.addFeedback(this.leaveFeedback).subscribe((response) => {
       this.showToasterSuccess()

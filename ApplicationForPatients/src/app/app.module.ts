@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 import { RegistrationLayoutComponent } from './registration/registration-layout/registration-layout.component';
 import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
+import { ActivationComponent } from './registration/activation/activation.component';
 
 
 
@@ -23,7 +24,8 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
     HomepageLayoutComponent,
     LandingpageLayoutComponent,
     RegistrationLayoutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ActivationComponent
 
   ],
   imports: [
@@ -38,6 +40,7 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule
+
   ],
   providers: [ ],
   bootstrap: [AppComponent]
