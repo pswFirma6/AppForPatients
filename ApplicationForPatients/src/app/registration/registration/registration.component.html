@@ -1,0 +1,456 @@
+
+<div class="sidenav">
+    <div class="register-main-text">
+      
+        <h1>Beyond Care<br> Register Page</h1>
+       <p>Register from here to access.</p>
+       
+       <div class="logo-img">
+           <img src="/assets/img/nav-logo.png" />
+       </div>
+
+    </div>
+ </div>
+ <div class="main">
+    <div class="col-md-6 col-sm-12">
+       <div class="register-form">
+          <form [formGroup]="regForm" novalidate>
+             <hr class = "zig-zag">
+             <p style="color:rgb(243, 94, 94);font-size:40px;" >Patient information:</p> 
+             
+             <div class="form-group">
+                <label>UserName</label>
+                <input type="text" class="form-control" formControlName="username" placeholder="UserName" required>
+
+                <div *ngIf="regForm.controls['username'].invalid && (regForm.controls['username'].dirty || regForm.controls['username'].touched)" 
+                         class="alert alert-danger" role="alert">
+                     
+                     <div *ngIf="regForm.controls['username'].errors.required">
+                        Please, enter username!
+                     </div>
+                </div>
+
+            </div>
+             
+             <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+                
+                <div *ngIf="regForm.controls['password'].invalid && (regForm.controls['password'].dirty || regForm.controls['password'].touched)" 
+                     class="alert alert-danger" role="alert">
+                  
+                  <div *ngIf="regForm.controls['password'].errors.required">
+                     Please, enter password!
+                  </div>
+                </div>
+             </div>
+             
+             <div class="form-group">
+                <label>Retype Password</label>
+                <input type="Password" class="form-control" formControlName="retypePassword" placeholder="Password" required>
+
+                <div *ngIf="regForm.controls['password'].invalid && (regForm.controls['password'].dirty || regForm.controls['password'].touched)" 
+                        class="alert alert-danger" role="alert">
+                     
+                     <div *ngIf="regForm.controls['password'].errors.required">
+                        Please, enter password!
+                     </div>
+                </div>
+
+                <div *ngIf="regForm.controls['password'].value !== regForm.controls['retypePassword'].value" 
+                     class="alert alert-danger" role="alert">
+
+                           Please, retype your password!
+                </div>   
+                <div *ngIf="regForm.controls['password'].value === regForm.controls['retypePassword'].value" 
+                     class="alert alert-primary" role="alert">
+
+                           Correct password!
+                </div>   
+             </div>
+             
+             <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="name" placeholder="First Name" required>
+                
+                <div *ngIf="regForm.controls['name'].invalid && (regForm.controls['name'].dirty || regForm.controls['name'].touched)" 
+                     class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['name'].errors.required">
+                        Please, enter first name!
+                     </div>
+                     <div *ngIf="regForm.controls['name'].errors.pattern">
+                        Please, enter only characters!
+                     </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="surname" placeholder="Last Name" required>
+
+                <div *ngIf="regForm.controls['surname'].invalid && (regForm.controls['surname'].dirty || regForm.controls['surname'].touched)" 
+                    class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['surname'].errors.required">
+                        Please, enter your last name!
+                     </div>
+                     <div *ngIf="regForm.controls['surname'].errors.pattern">
+                        Please, enter only characters!
+                     </div>
+                </div>
+             
+             </div>
+
+             <div class="form-group">
+                <label>Email</label>
+
+                <input type="email" class="form-control" formControlName="email" id="email" ng-model="email" required/>
+                
+                <div *ngIf="regForm.controls['email'].invalid && (regForm.controls['email'].dirty || regForm.controls['email'].touched)" 
+                     class="alert alert-danger" role="alert">
+            
+                  <div *ngIf="regForm.controls['email'].errors.required">
+                     Please, enter your email!
+                  </div>
+                  <div *ngIf="regForm.controls['email'].errors.email">
+                     Please, enter appropriate email form!
+                  </div>
+                </div>
+             </div>
+
+             <div class="form-group">
+                <label>Date Of Birth</label>
+                <input type="date" class="form-control" formControlName="birthDate" id="birthDate">
+             
+                <div *ngIf="regForm.controls['birthDate'].invalid && (regForm.controls['birthDate'].dirty || regForm.controls['birthDate'].touched)" 
+                      class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['birthDate'].errors.required">
+                        Please, enter your date!
+                     </div>
+                </div>
+             </div>
+
+             <div class="form-group">
+                <label>Home Address</label>
+                <input type="text" class="form-control" formControlName="address" id="address" placeholder="Address">
+            
+                <div *ngIf="regForm.controls['address'].invalid && (regForm.controls['address'].dirty || regForm.controls['address'].touched)" 
+                      class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['address'].errors.required">
+                        Please, enter your address!
+                     </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+                <label>Country</label>
+                <input type="text" class="form-control" formControlName="country" id="country" placeholder="Country">
+             
+                <div *ngIf="regForm.controls['country'].invalid && (regForm.controls['country'].dirty || regForm.controls['country'].touched)" 
+                         class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['country'].errors.required">
+                        Please, enter your country!
+                     </div>
+                     <div *ngIf="regForm.controls['country'].errors.pattern">
+                        Please, enter only characters!
+                     </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" formControlName="city" id="city" placeholder="City">
+
+                <div *ngIf="regForm.controls['city'].invalid && (regForm.controls['city'].dirty || regForm.controls['city'].touched)" 
+                        class="alert alert-danger" role="alert">
+            
+                  <div *ngIf="regForm.controls['city'].errors.required">
+                     Please, enter your city!
+                  </div>
+                  <div *ngIf="regForm.controls['city'].errors.pattern">
+                     Please, enter only characters!
+                  </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+                <label>Cell Phone</label>
+                <input type="tel" class="form-control" formControlName="phone" id="phone" placeholder="Phone number">
+             
+                <div *ngIf="regForm.controls['phone'].invalid && (regForm.controls['phone'].dirty || regForm.controls['phone'].touched)" 
+                        class="alert alert-danger" role="alert">
+            
+                        <div *ngIf="regForm.controls['phone'].errors.required">
+                           Please, enter your phone!
+                        </div>
+                        <div *ngIf="regForm.controls['phone'].errors.pattern">
+                           Please, enter number!
+                        </div>
+                </div>
+             </div>
+
+             <hr class = "zig-zag">
+
+             <p style="color:rgb(243, 94, 94);font-size:26px;" >Basic health information and Vital signs of patient:</p> 
+
+             <div class="form-group">
+                <label>Unique Master Citizen Number</label>
+                <input type="text" class="form-control" formControlName="jmbg" id="jmbg" placeholder="UMCN">
+
+                <div *ngIf="regForm.controls['jmbg'].invalid && (regForm.controls['jmbg'].dirty || regForm.controls['jmbg'].touched)" 
+                      class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['jmbg'].errors.required">
+                        Please, enter your UMCN!
+                     </div>
+                     <div *ngIf="regForm.controls['jmbg'].errors.pattern">
+                        Please, enter number!
+                     </div>
+                     <div *ngIf="regForm.controls['jmbg'].errors.minlength">
+                        UMCN must include 13 digits!
+                     </div>
+                     <div *ngIf="regForm.controls['jmbg'].errors.maxlength">
+                        UMCN must include 13 digits!
+                     </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+               <p>Choose a allergies : </p>
+               <button type="button"  class="btn btn-black" (click)="triggerModal(modalDataAllergie)">Show allergies</button>
+               
+            </div>
+
+             <div class="form-group">
+                <label>Blood Type</label>
+                <select class="form-control" formControlName="bloodType" id="bloodType" class="browser-default custom-select">
+                  <option value="0">A</option>
+                  <option value="1">B</option>
+                  <option value="2">AB</option>
+                  <option value="3">O</option>
+               </select>
+  
+                  <div *ngIf="regForm.controls['bloodType'].invalid && (regForm.controls['bloodType'].dirty || regForm.controls['bloodType'].touched)" 
+                     class="alert alert-danger" role="alert">
+      
+                     <div *ngIf="regForm.controls['bloodType'].errors.required">
+                           Please, enter your blood type!
+                     </div>
+                  </div>
+             </div>
+
+             <div class="form-group">
+                <label>Rh Factor</label>
+                <select class="form-control" formControlName="rhfactor" id="rhfactor" class="browser-default custom-select">
+                  <option value="0">Positive</option>
+                  <option value="1">Negative</option>
+               </select>
+
+               <div *ngIf="regForm.controls['rhfactor'].invalid && (regForm.controls['rhfactor'].dirty || regForm.controls['rhfactor'].touched)" 
+                  class="alert alert-danger" role="alert">
+
+                  <div *ngIf="regForm.controls['rhfactor'].errors.required">
+                        Please, enter your Rh factor!
+                  </div>
+               </div>
+             </div>
+
+             <div class="form-group">
+                <p>Gender : </p>
+                <input type="radio" name="gender" formControlName="gender" value="male"> Male<br>
+                <input type="radio" name="gender" formControlName="gender" value="female"> Female<br>
+            
+                <div *ngIf="regForm.controls['gender'].invalid " 
+                        class="alert alert-danger" role="alert">
+
+                        <div *ngIf="regForm.controls['gender'].errors.required">
+                              Please, choose your gender!
+                        </div>
+                </div>
+
+             </div>
+             
+             <div class="form-group">
+                <p>Choose a doctor : </p>
+                <button type="button" class="btn btn-black" (click)="triggerModal(modalDataDoctors)">Show doctors</button>
+
+                <div *ngIf="chosenDoctor.id===undefined" 
+                     class="alert alert-danger" role="alert">
+
+                           Please, choose your doctor!
+                </div>    
+
+             </div>
+
+             <div class="form-group">
+                <label>Height</label>
+                <input type="text" class="form-control" formControlName="height" id="height" placeholder="Height">
+                <div *ngIf="regForm.controls['height'].invalid && (regForm.controls['height'].dirty || regForm.controls['height'].touched)" 
+                        class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['height'].errors.required">
+                        Please, enter your height!
+                     </div>
+                     <div *ngIf="regForm.controls['height'].errors.pattern">
+                        Please, enter number!
+                     </div>
+                     <div *ngIf="regForm.controls['height'].errors.minlength">
+                        Min height must include 2 digits!
+                     </div>
+                     <div *ngIf="regForm.controls['height'].errors.maxlength">
+                        Max height must include 3 digits!
+                     </div>
+                </div>
+
+             </div>
+
+             <div class="form-group">
+                <label>Weight</label>
+                <input type="text" class="form-control" formControlName="weight" id="weight" placeholder="Weight">
+                
+                <div *ngIf="regForm.controls['weight'].invalid && (regForm.controls['weight'].dirty || regForm.controls['weight'].touched)" 
+                         class="alert alert-danger" role="alert">
+            
+                     <div *ngIf="regForm.controls['weight'].errors.required">
+                        Please, enter your weight!
+                     </div>
+                     <div *ngIf="regForm.controls['weight'].errors.pattern">
+                        Please, enter number!
+                     </div>
+                     <div *ngIf="regForm.controls['weight'].errors.minlength">
+                        Min weight must include 2 digits!
+                     </div>
+                     <div *ngIf="regForm.controls['weight'].errors.maxlength">
+                        Max weight must include 3 digits!
+                     </div>
+                </div>
+
+             </div>
+
+
+             <button routerLink="/landingpage"  class="btn blue" (click)="register()"  >Register </button>
+             <!--<button type="submit" class="btn btn-secondary">Register</button>-->
+          </form>
+       </div>
+    </div>
+ </div>
+
+
+ <!-- Modal for doctors -->
+
+ <ng-template #modalDataDoctors let-modal>
+   <div class="modal-header">
+     <h4 class="modal-title" id="modal-basic-title">Choose one of available doctors!</h4>
+     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+       <span aria-hidden="true">×</span>
+     </button>
+   </div>
+   <div class="modal-body">
+      <p>List of available doctors: </p>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Surname</th>
+          <th scope="col">Name</th>
+          <th scope="col">City</th>
+          <th scope="col">Country</th>
+          <th> </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let doctor of doctors;">
+                   <td></td>
+                   <td>{{ doctor.surname }}</td>
+                   <td>{{ doctor.name  }}</td>
+                   <td>{{ doctor.city  }}</td>
+                   <td>{{ doctor.country  }}</td>
+                   <td> <button type="button" class="btn blue" (click)="addDoctor(doctor)">Add</button> </td>
+            </tr>
+        </tbody>
+      </table>
+   </div>
+
+   <div class="modal-footer">
+      <div class="row">
+         <div class="col-md-4 pl-1">
+            <input type="text" class="form-control-plaintext" readonly  id="name" value="{{ chosenDoctor.name }}">
+         </div>
+         <div class="col-md-4 pl-3">
+            <input type="text" class="form-control-plaintext" readonly id="surname" value="{{ chosenDoctor.surname }}">
+         </div>
+       </div>
+      <button type="button" class="btn btn-danger"  (click)="modal.close('Save click')">Close</button>
+   </div>
+ </ng-template>
+
+  <!-- Modal for allergies -->
+
+ <ng-template #modalDataAllergie let-modal>
+   <div class="modal-header">
+     <h4 class="modal-title" id="modal-basic-title">What are you allergic to ?</h4>
+     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+       <span aria-hidden="true">×</span>
+     </button>
+   </div>
+   <div class="modal-body">
+      <p>Choose what are you allergic to: </p>
+
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Medicine</th>
+          <th scope="col">Reaction type</th>
+          <th scope="col"></th>
+          <th> </th>
+        </tr>
+        </thead>
+        <tbody *ngIf='allergies'>
+            <tr *ngFor="let allergy of allergies;">
+                   <td></td>
+                   <td>{{ allergy.medicine }}</td>
+                   <td>{{ allergy.reactionType }}</td>
+                   <td> <button type="button" class="btn blue" (click)="addAllergy(allergy)">Add</button> </td>
+            </tr>
+        </tbody>
+      </table>
+
+      <p>Added allergies: </p>
+
+      <table class="table table-striped">
+         <thead>
+         <tr>
+           <th scope="col">#</th>
+           <th scope="col">Medicine</th>
+           <th scope="col">Reaction type</th>
+           <th scope="col"></th>
+           <th> </th>
+         </tr>
+         </thead>
+         <tbody *ngIf='allergies'>
+             <tr *ngFor="let allergy of addedAllergies;">
+                    <td></td>
+                    <td>{{ allergy.medicine }}</td>
+                    <td>{{ allergy.reactionType }}</td>
+                    <td> <button type="button" class="btn btn-danger" (click)="restartAllergies(allergy)">Remove</button> </td>
+             </tr>
+         </tbody>
+       </table>
+
+   </div>
+   <div class="modal-footer">
+     <button type="button" class="btn btn-danger"  (click)="modal.close('Save click')">Close</button>
+   </div>
+ </ng-template>
+

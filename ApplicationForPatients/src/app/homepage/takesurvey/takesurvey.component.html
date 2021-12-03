@@ -1,0 +1,67 @@
+<div>
+    <form>
+        <div>
+            <h1>Hospital</h1>
+            <table class="table">
+                <tr *ngFor="let srv of surveyHospital">
+                    <td>{{srv.questionText}}</td>
+                    <fieldset class="fieldsetAlign" name={{srv.questionText}}>
+                        <input type="radio" name={{srv.questionText}} value=1 [(ngModel)]="srv.rate">
+                        <label for="1">1</label>
+                        <input type="radio" name={{srv.questionText}} value=2 [(ngModel)]="srv.rate">
+                        <label for="2">2</label>
+                        <input type="radio" name={{srv.questionText}} value=3 [(ngModel)]="srv.rate">
+                        <label for="3">3</label>
+                        <input type="radio" name={{srv.questionText}} value=4 [(ngModel)]="srv.rate">
+                        <label for="4">4</label>
+                        <input type="radio" name={{srv.questionText}} value=5 [(ngModel)]="srv.rate">
+                        <label for="5">5</label>
+                    </fieldset>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h1>Staff</h1>
+            <table class="table">
+                <tr *ngFor="let srv of surveyStaff">
+                    <td>{{srv.questionText}}</td>
+                    <fieldset class="fieldsetAlign" name={{srv.questionText}}>
+                        <input type="radio" name={{srv.questionText}} value=1 [(ngModel)]="srv.rate">
+                        <label for="1">1</label>
+                        <input type="radio" name={{srv.questionText}} value=2 [(ngModel)]="srv.rate">
+                        <label for="2">2</label>
+                        <input type="radio" name={{srv.questionText}} value=3 [(ngModel)]="srv.rate">
+                        <label for="3">3</label>
+                        <input type="radio" name={{srv.questionText}} value=4 [(ngModel)]="srv.rate">
+                        <label for="4">4</label>
+                        <input type="radio" name={{srv.questionText}} value=5 [(ngModel)]="srv.rate">
+                        <label for="5">5</label>
+                    </fieldset>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <h1>Application</h1>
+            <table class="table">
+                <tr *ngFor="let srv of surveyApplication">
+                    <td>{{srv.questionText}}</td>
+                    <fieldset class="fieldsetAlign" name={{srv.questionText}}>
+                        <input type="radio" name={{srv.questionText}} value=1 [(ngModel)]="srv.rate">
+                        <label for="1">1</label>
+                        <input type="radio" name={{srv.questionText}} value=2 [(ngModel)]="srv.rate">
+                        <label for="2">2</label>
+                        <input type="radio" name={{srv.questionText}} value=3 [(ngModel)]="srv.rate">
+                        <label for="3">3</label>
+                        <input type="radio" name={{srv.questionText}} value=4 [(ngModel)]="srv.rate">
+                        <label for="4">4</label>
+                        <input type="radio" name={{srv.questionText}} value=5 [(ngModel)]="srv.rate">
+                        <label for="5">5</label>
+                    </fieldset>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-3 pl-2">
+            <button class="btn btn-primary btn-block" type="submit" (click)="takeSurvey()">Submit</button>
+        </div>
+    </form>
+</div>
