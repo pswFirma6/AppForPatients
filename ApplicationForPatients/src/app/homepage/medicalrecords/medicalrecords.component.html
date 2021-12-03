@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h2 class="title">Medical record of #Patient</h2>
+                        <h2 class="title">Medical record of {{patient.name}} {{patient.surname}} </h2>
                     </div>
                     <div class="content">
                         <form>
@@ -14,19 +14,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input  readonly type="text" class="form-control"  placeholder="Name" value="Marko">
+                                        <input  readonly type="text" class="form-control"  placeholder="Name" value="{{patient.name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Last name</label>
-                                        <input  readonly type="text" class="form-control" placeholder="Last name" value="Markovic">
+                                        <input  readonly type="text" class="form-control" placeholder="Last name" value="{{patient.surname}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Username</label>
-                                        <input  readonly type="text" class="form-control" placeholder="SeekEquilibrium">
+                                        <input  readonly type="text" class="form-control" placeholder="{{patient.username}}">
                                     </div>
                                 </div>
                             </div>
@@ -37,7 +37,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input readonly  type="text" class="form-control" placeholder="Home Address" value="15.Avgust 48a ">
+                                        <input readonly  type="text" class="form-control" placeholder="Home Address" value="{{patient.address}}">
                                     </div>
                                 </div>
                             </div>
@@ -46,34 +46,29 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input readonly  type="text" class="form-control" placeholder="City" value="Ruma">
+                                        <input readonly  type="text" class="form-control" placeholder="City" value="{{patient.city}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <input readonly  type="text" class="form-control" placeholder="Country" value="Serbia">
+                                        <input readonly  type="text" class="form-control" placeholder="Country" value="{{patient.country}}">
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Postal Code</label>
-                                        <input readonly  type="number" class="form-control" placeholder="021">
-                                    </div>
-                                </div>
+                                
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date of birth</label>
-                                        <input readonly  type="number" class="form-control" placeholder="08.01.1937.">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient.birthDate| date: 'dd/MM/yyyy'}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input readonly  type="number" class="form-control" placeholder="06004324324">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient.phone}}">
                                     </div>
                                 </div>
                             </div>
@@ -85,19 +80,19 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>UMCN</label>
-                                        <input readonly  type="number" class="form-control" placeholder="2131235325" >
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient.jmbg}}" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Blood type</label>
-                                        <input readonly  type="text" class="form-control" placeholder="Bloodtype" value="A">
+                                        <input readonly  type="text" class="form-control" placeholder="Bloodtype" value="B">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Rh Factor</label>
-                                        <input readonly  type="text" class="form-control" placeholder="RhFactor" value="positive (+)">
+                                        <input readonly  type="text" class="form-control" placeholder="RhFactor" value="negative">
                                     </div>
                                 </div>
                             </div>
@@ -106,13 +101,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>HEIGHT (cm)</label>
-                                        <input readonly  type="number" class="form-control" placeholder="180">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient.height}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Weight (kg)</label>
-                                        <input readonly  type="number" class="form-control" placeholder="88.6">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient.weight}}">
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +152,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">3</td>
-                                    <td>Pet Allergy</td>
+                                    <td>Polen Allergy</td>
                                 </tr>
                             </tbody>
                             </table>
@@ -165,7 +160,7 @@
                     </div>
                     <hr>
                     <div  class="text-center">
-                        <h4 style="color: rgb(22, 18, 18);">Assigned doctor : Nikola Slavnic</h4>
+                        <h4 style="color: rgb(22, 18, 18);">Assigned doctor: Nikola Slavnic</h4>
                     </div>
                 </div>
             </div>
