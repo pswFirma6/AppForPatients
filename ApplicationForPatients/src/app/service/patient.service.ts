@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { GlobalSettings } from "../global";
-import { Patient } from "../models/patient";
+import { Patient } from "../shared/patient";
 
 @Injectable({
     providedIn: 'root',

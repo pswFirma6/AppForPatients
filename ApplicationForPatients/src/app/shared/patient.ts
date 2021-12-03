@@ -1,4 +1,4 @@
-import { Allergy } from "./Allergy";
+
 import { Doctor } from "./Doctor";
 
 export class Patient {
@@ -19,6 +19,6 @@ export class Patient {
     Height:number;    
     Weight:number;       
     Doctor : Doctor;
-    Allergies: Array<Allergy>;
+    
 
 }

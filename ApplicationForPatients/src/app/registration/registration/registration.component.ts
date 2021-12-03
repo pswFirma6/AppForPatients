@@ -4,7 +4,7 @@ import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AllergyService } from 'src/app/service/allergy.service';
 import { DoctorService } from 'src/app/service/doctor.service';
 import { NotificationService } from 'src/app/service/notification_service/notification.service';
-import { Allergy } from 'src/app/shared/allergy';
+import { Allergy} from 'src/app/shared/allergy';
 import { DoctorForReg } from 'src/app/shared/doctorForReg';
 import {Router} from "@angular/router"
 import { Registration } from 'src/app/shared/registration';
