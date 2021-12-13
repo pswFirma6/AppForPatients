@@ -1,0 +1,17 @@
+
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+.doctors li.selected {
+  background-color: black;
+  color: white;
+}
+
+.selected{
+  background-color: rgb(218, 218, 218);
+}

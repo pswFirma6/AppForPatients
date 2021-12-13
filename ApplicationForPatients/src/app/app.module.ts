@@ -15,7 +15,8 @@ import { RegistrationLayoutComponent } from './registration/registration-layout/
 import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 import { ActivationComponent } from './registration/activation/activation.component';
-
+import { MaterialModule } from './material.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -33,14 +34,17 @@ import { ActivationComponent } from './registration/activation/activation.compon
     AppRoutingModule,
     FormsModule,
     ToastrModule.forRoot(),
+    NgbModule,
     RouterModule.forRoot([ ]),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule
+
     
   ],
+
   providers: [ ],
   bootstrap: [AppComponent]
 
