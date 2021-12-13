@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { AppointmentPriorityService } from 'src/app/service/appointmentPriority.service';
 import { appointmentPriority, selectedTerm } from 'src/app/shared/appointmentPriority';
 
@@ -8,19 +9,24 @@ import { appointmentPriority, selectedTerm } from 'src/app/shared/appointmentPri
   styleUrls: ['./appointment-priority.component.css']
 })
 export class AppointmentPriorityComponent implements OnInit {
-  public selectedTerm: selectedTerm;
   public searchClicked: boolean = false;
-  public displayList: appointmentPriority;
-  public freeTerms: appointmentPriority;
+  public displayList: appointmentPriority = {} as appointmentPriority;
+  public freeTerms: appointmentPriority = {} as appointmentPriority;
   public displayDoctors: any[] = [];
-  public selectedDate: Date;
+  
+  public selectedTerm: selectedTerm = {} as selectedTerm;
+  public selectedDate: Date = {} as Date;
   public selectedPriority: string = "doctor";
-  public selectedDoctor: string;
-  public selectedType: string;
+  public selectedDoctor: string = "";
+  public selectedType: string = "";
+
+  public sendSelectedDate: Date = {} as Date;
+  public sendSelectedDoctor: string = "";
+
   public allTypes: any[] = [];
   public doctorType: Record<string, string> = {};
   public doctors: any[] = [];
-  constructor(private appointmentPriorityService: AppointmentPriorityService) {
+  constructor(private appointmentPriorityService: AppointmentPriorityService, private router: Router) {
       this.allTypes = [
         'allergy_and_immunology',
         'anesthesiology',
@@ -80,32 +86,61 @@ export class AppointmentPriorityComponent implements OnInit {
 
   TypeChange(){
     this.displayDoctors = [];
-    console.log(this.selectedType)
     for(let i=0; i<this.doctors.length; i++){
       if(this.selectedType == this.doctorType[this.doctors[i].doctorType]){
         this.displayDoctors.push(this.doctors[i])
       }
     }
-    this.selectedDoctor = this.displayDoctors[0]
   }
 
   SearchTerms(){
-    this.freeTerms = {} as appointmentPriority;
-    console.log(this.selectedDate)
+    console.log(this.selectedTerm)
     this.appointmentPriorityService.searchTerms(
       this.selectedDate, this.selectedDoctor, this.selectedPriority)
       .subscribe(res => {
         this.freeTerms = res
       });
       this.searchClicked = true;
+
+    this.PrepareDataForSending();
+    this.EmptyFormElements();
   }
 
-  SelectedTerm(){
-    let date = this.selectedDate + ' ' + this.selectedTerm;
-    console.log(date)
-    this.appointmentPriorityService.AddAppointment(date, 1, this.selectedDoctor)
+  private PrepareDataForSending() {
+    this.sendSelectedDate = this.selectedDate;
+    this.sendSelectedDoctor = this.selectedDoctor;
+  }
+
+  private EmptyFormElements() {
+    this.freeTerms = {} as appointmentPriority;
+    this.selectedTerm = {} as selectedTerm;
+    this.selectedDoctor = "";
+    this.selectedType = "";
+    this.selectedDate = {} as Date;
+  }
+
+  SubmitTerm(){
+    let date = this.sendSelectedDate + ' ' + this.selectedTerm;
+    this.appointmentPriorityService.AddAppointment(date, 1, this.sendSelectedDoctor)
     .subscribe(res => {
       console.log(res)
+      this.router.navigate(['/medicalrecords']);
+
     });
+  }
+
+  RequestValidation(): boolean{
+    if(!this.selectedDate || this.selectedType=="" || this.selectedDoctor==""){
+      return false;
+    }
+    return true;
+  }
+
+  AddTermValidation(): boolean{
+    console.log(this.selectedTerm)
+    if(Object.keys(this.selectedTerm).length === 0){
+      return false;
+    }
+    return true;
   }
 }
