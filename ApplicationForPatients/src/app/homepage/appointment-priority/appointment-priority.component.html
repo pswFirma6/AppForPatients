@@ -4,12 +4,44 @@
     </div>
     <div>
         <div>
-            <p>Date:</p>
-            <input type="date">
-            <p>Type:</p>
-            
-            <p>Doctor:</p>
-            <p>Priority:</p>
+            <div>
+                <p>Date:</p>
+                <input [ngModel]="selectedDate" (ngModelChange)="selectedDate = $event" type="date">
+            </div>
+            <div>
+                <p>Type:</p>
+                <select [(ngModel)]="selectedType" (click)=TypeChange() id="type">
+                    <option *ngFor="let type of allTypes;" [value]="type"> {{type}}</option>
+                </select>
+            </div>
+            <div>
+                <p>Doctor:</p>
+                <select [(ngModel)]="selectedDoctor" id="doctor">
+                    <option *ngFor="let doctor of displayDoctors;" [value]="doctor.id"> {{doctor.name}} {{doctor.surname}}</option>
+                </select>
+            </div>
+            <div>
+                <p>Priority:</p>
+                <input [ngModel]="selectedPriority" type="radio" id="doctor" value="doctor" name="priority">
+                <label>Doctor</label>
+                <input [ngModel]="selectedPriority" type="radio" id="date" value="date" name="priority">
+                <label>Date</label>
+            </div>
+            <div>
+                <button (click)="SearchTerms()">Search for free terms</button>
+            </div>
+        </div>
+        <div>
+            <div *ngIf="searchClicked == true">
+                <table class="table">
+                    <tr *ngFor="let term of freeTerms.terms">
+                        <td>{{term}}</td>
+                        <td>{{freeTerms.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{freeTerms.doctor.name}} {{freeTerms.doctor.surname}}</td>
+                        <button>Select</button>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>
