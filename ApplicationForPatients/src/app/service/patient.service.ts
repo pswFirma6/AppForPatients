@@ -12,7 +12,7 @@ export class PatientService {
 
     constructor(private http: HttpClient){ }
 
-    public getPatient(id: string): Observable<Patient>{
+    public getPatient(id: number): Observable<Patient>{
         
         return this.http.get<Patient>(this.patientUrl +"/" +id);
     }
