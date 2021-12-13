@@ -6,3 +6,10 @@ export class appointmentPriority{
     doctor: Doctor;
     terms: string[];
 }
+
+export class selectedTerm{
+    startTime: Date;
+    patientId: number;
+    doctorId: number;
+    doctor: Doctor;
+}

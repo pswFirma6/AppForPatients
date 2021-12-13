@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { GlobalSettings } from "../global";
-import { appointmentPriority } from "../shared/appointmentPriority";
+import { appointmentPriority, selectedTerm } from "../shared/appointmentPriority";
 
 
 @Injectable({
@@ -27,6 +27,15 @@ export class AppointmentPriorityService {
         return this.http.post<appointmentPriority>(this.apppointmentUrl + "/priority", request);
     }
 
+    public AddAppointment(date: string, patientId: number, doctorId: string): Observable<selectedTerm>{
+        let AddTerm = {
+            startTime: date,
+            patientId: patientId,
+            doctorId: doctorId
+          }
+        console.log(AddTerm)
+        return this.http.post<selectedTerm>(this.apppointmentUrl, AddTerm);
+    }
     // public addSurvey(survey: Survey[]): Observable<Survey[]>{
     //     for(let s of survey){
     //         s.rate = Number(s.rate)

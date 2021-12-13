@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppointmentPriorityService } from 'src/app/service/appointmentPriority.service';
-import { appointmentPriority } from 'src/app/shared/appointmentPriority';
+import { appointmentPriority, selectedTerm } from 'src/app/shared/appointmentPriority';
 
 @Component({
   selector: 'app-appointment-priority',
@@ -8,6 +8,7 @@ import { appointmentPriority } from 'src/app/shared/appointmentPriority';
   styleUrls: ['./appointment-priority.component.css']
 })
 export class AppointmentPriorityComponent implements OnInit {
+  public selectedTerm: selectedTerm;
   public searchClicked: boolean = false;
   public displayList: appointmentPriority;
   public freeTerms: appointmentPriority;
@@ -89,14 +90,22 @@ export class AppointmentPriorityComponent implements OnInit {
   }
 
   SearchTerms(){
+    this.freeTerms = {} as appointmentPriority;
     console.log(this.selectedDate)
     this.appointmentPriorityService.searchTerms(
       this.selectedDate, this.selectedDoctor, this.selectedPriority)
       .subscribe(res => {
         this.freeTerms = res
-        console.log(this.freeTerms)
-        console.log(this.freeTerms.terms)
       });
       this.searchClicked = true;
+  }
+
+  SelectedTerm(){
+    let date = this.selectedDate + ' ' + this.selectedTerm;
+    console.log(date)
+    this.appointmentPriorityService.AddAppointment(date, 1, this.selectedDoctor)
+    .subscribe(res => {
+      console.log(res)
+    });
   }
 }
