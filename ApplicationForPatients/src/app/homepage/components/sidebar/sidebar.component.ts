@@ -13,7 +13,8 @@ export const ROUTES: RouteInfo[] = [
   { path: '/patient/givefeedback', title: 'Leave feedback',  icon: 'pe-7s-like2', class: '' },
   { path: '/patient/viewfeedback', title: 'View feedback', icon:'pe-7s-news-paper', class: '' },
   { path: '/patient/medicalrecords', title: 'Medical records', icon:'pe-7s-note2', class: '' },
-  
+  { path: '/patient/takesurvey', title: 'Take survey', icon:'pe-7s-note2', class: '' },
+  { path: '/patient/appointmentPriority', title: 'Make an appointment', icon:'pe-7s-note2', class: '' },
 
 ];
 

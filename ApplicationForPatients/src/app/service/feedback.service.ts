@@ -4,7 +4,7 @@ import { LeaveFeedback } from '../shared/leaveFeedback';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { GlobalSettings } from '../global';
-import { Feedback } from '../models/feedback';
+import { Feedback } from '../shared/feedback';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +24,7 @@ export class FeedbackService {
           .pipe(
             catchError(this.handleError)
           );
-      }
+    }
 
       handleError(error: any) {
 
