@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { ToastrModule } from "ngx-toastr";
+import { AppointmentPriorityComponent } from "src/app/homepage/appointment-priority/appointment-priority.component";
 import { NavbarComponent } from "../components/navbar/navbar.component";
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 import { FeedbackComponent } from "../feedback/feedback.component";
@@ -26,7 +27,8 @@ import { HomepageLayoutRoutes } from "./homepage-layout.routing";
         FeedbackComponent,
         ViewfeedbackComponent,
         MedicalrecordsComponent,
-        TakesurveyComponent
+        TakesurveyComponent,
+        AppointmentPriorityComponent
     ],
     exports: [
         NavbarComponent,

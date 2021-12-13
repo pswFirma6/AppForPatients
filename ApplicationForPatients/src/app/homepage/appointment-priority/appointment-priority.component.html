@@ -1,0 +1,48 @@
+<div>
+    <div>
+        <h2>Make an appointment</h2>
+    </div>
+    <div>
+        <div class="form-group">
+            <div>
+                <p>Date:</p>
+                <input [ngModel]="selectedDate" (ngModelChange)="selectedDate = $event" type="date">
+            </div>
+            <div>
+                <p>Type:</p>
+                <select [(ngModel)]="selectedType" (click)=TypeChange() id="type">
+                    <option *ngFor="let type of allTypes;" [value]="type"> {{type}}</option>
+                </select>
+            </div>
+            <div>
+                <p>Doctor:</p>
+                <select [(ngModel)]="selectedDoctor" id="doctor">
+                    <option *ngFor="let doctor of displayDoctors;" [value]="doctor.id"> {{doctor.name}} {{doctor.surname}}</option>
+                </select>
+            </div>
+            <div>
+                <p>Priority:</p>
+                <input [ngModel]="selectedPriority" type="radio" id="doctor" value="doctor" name="priority" (ngModelChange)="selectedPriority = $event">
+                <label>Doctor</label>
+                <input [ngModel]="selectedPriority" type="radio" id="date" value="date" name="priority" (ngModelChange)="selectedPriority = $event">
+                <label>Date</label>
+            
+                <button class="btn btn-primary btn-block" (click)="SearchTerms()">Search for free terms</button>
+            </div>
+        </div>
+        <div>
+            <div *ngIf="searchClicked == true">
+                <table class="table">
+                    <tr *ngFor="let term of freeTerms.terms">
+                        <td><b>{{term}}</b></td>
+                        <td>{{freeTerms.date | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{doctorType[freeTerms.doctor.doctorType]}}</td>
+                        <td>{{freeTerms.doctor.name}} {{freeTerms.doctor.surname}}</td>
+                        <input type="radio" name="term" value={{term}} [ngModel]="selectedTerm" (ngModelChange)="selectedTerm = $event">
+                    </tr>
+                    <button class="btn btn-primary btn-block" (click)="SelectedTerm()">Submit</button>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
 export class Doctor {
-    Name:string ;
-    Surname:string;
+    name:string ;
+    surname:string;
+    doctorType:number;
 }
