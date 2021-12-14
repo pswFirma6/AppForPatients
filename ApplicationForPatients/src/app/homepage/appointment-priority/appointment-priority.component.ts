@@ -130,7 +130,7 @@ export class AppointmentPriorityComponent implements OnInit {
   }
 
   RequestValidation(): boolean{
-    if(!this.selectedDate || this.selectedType=="" || this.selectedDoctor==""){
+    if(Object.keys(this.selectedDate).length === 0 || this.selectedType=="" || this.selectedDoctor==""){
       return false;
     }
     return true;

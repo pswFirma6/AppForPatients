@@ -1,3 +1,3 @@
 export class GlobalSettings{
-    static baseUrl = 'https://localhost:44392';
+    static baseUrl = 'http://localhost:44392';
 }
