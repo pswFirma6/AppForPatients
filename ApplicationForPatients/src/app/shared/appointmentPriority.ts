@@ -1,7 +1,11 @@
 import { Doctor } from "./Doctor"
 
-export class appointmentPriority{
-    date: string;
+export class freeTermsList{
+    freeTermsList: freeTerms[];
+}
+
+export class freeTerms{
+    date: Date;
     doctorId: number;
     doctor: Doctor;
     terms: string[];
