@@ -20,5 +20,5 @@ export class Registration {
     height: number;
     weight: number;
     allergies: Allergy[];
-    doctorId: string;
+    doctorId: number;
 }

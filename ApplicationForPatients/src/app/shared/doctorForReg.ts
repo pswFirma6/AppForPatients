@@ -1,5 +1,5 @@
 export class DoctorForReg {
-    id: string;
+    id: number;
     name: string;
     surname: string;
     city: string;

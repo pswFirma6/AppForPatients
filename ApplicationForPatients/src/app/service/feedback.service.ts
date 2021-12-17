@@ -20,7 +20,7 @@ export class FeedbackService {
     }
 
     addFeedback(leaveFeedback: LeaveFeedback): Observable<LeaveFeedback> {
-        return this.http.post<LeaveFeedback>(this.feedbackUrl, leaveFeedback)
+        return this.http.post<LeaveFeedback>(this.feedbackUrl + '/leave', leaveFeedback)
           .pipe(
             catchError(this.handleError)
           );
