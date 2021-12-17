@@ -1,6 +1,6 @@
 export class LeaveFeedback 
 {
-    personId: string;
+    personId: number;
     text: string;
     anonymous: boolean;
     publish: boolean;

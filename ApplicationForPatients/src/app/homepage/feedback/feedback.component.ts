@@ -27,7 +27,7 @@ export class FeedbackComponent implements OnInit {
       this.showToasterError()
       return;
     }
-    this.leaveFeedback.personId = '0baad6ae-9f03-4c87-806b-3965e665754a';
+    this.leaveFeedback.personId = 1;
   
     this.feedbackService.addFeedback(this.leaveFeedback).subscribe((response) => {
       this.showToasterSuccess()
