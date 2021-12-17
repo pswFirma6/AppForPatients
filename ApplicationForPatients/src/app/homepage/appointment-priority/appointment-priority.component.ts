@@ -1,26 +1,36 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { AppointmentPriorityService } from 'src/app/service/appointmentPriority.service';
-import { appointmentPriority, selectedTerm } from 'src/app/shared/appointmentPriority';
+import { freeTerms, freeTermsList, selectedTerm } from 'src/app/shared/appointmentPriority';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-appointment-priority',
   templateUrl: './appointment-priority.component.html',
-  styleUrls: ['./appointment-priority.component.css']
+  styleUrls: ['./appointment-priority.component.css'],
+  providers: [DatePipe]
 })
 export class AppointmentPriorityComponent implements OnInit {
-  public selectedTerm: selectedTerm;
   public searchClicked: boolean = false;
-  public displayList: appointmentPriority;
-  public freeTerms: appointmentPriority;
+
+  public displayList: freeTerms = {} as freeTerms;
+  public allFreeTerms: freeTermsList = {} as freeTermsList;
+  public freeTerms: freeTerms = {} as freeTerms;
   public displayDoctors: any[] = [];
-  public selectedDate: Date;
+  
+  public selectedDate: Date = {} as Date;
   public selectedPriority: string = "doctor";
-  public selectedDoctor: string;
-  public selectedType: string;
+  public selectedDoctor: number = 0;
+  public selectedType: string = "";
+
+  public sendSelectedDate: Date = {} as Date;
+  public sendSelectedTime: String = "";
+  public sendSelectedDoctorId: number;
+
   public allTypes: any[] = [];
   public doctorType: Record<string, string> = {};
   public doctors: any[] = [];
-  constructor(private appointmentPriorityService: AppointmentPriorityService) {
+  constructor(private appointmentPriorityService: AppointmentPriorityService, private router: Router, private DatePipe: DatePipe) {
       this.allTypes = [
         'allergy_and_immunology',
         'anesthesiology',
@@ -80,32 +90,65 @@ export class AppointmentPriorityComponent implements OnInit {
 
   TypeChange(){
     this.displayDoctors = [];
-    console.log(this.selectedType)
     for(let i=0; i<this.doctors.length; i++){
       if(this.selectedType == this.doctorType[this.doctors[i].doctorType]){
         this.displayDoctors.push(this.doctors[i])
       }
     }
-    this.selectedDoctor = this.displayDoctors[0]
   }
 
   SearchTerms(){
-    this.freeTerms = {} as appointmentPriority;
-    console.log(this.selectedDate)
     this.appointmentPriorityService.searchTerms(
       this.selectedDate, this.selectedDoctor, this.selectedPriority)
       .subscribe(res => {
-        this.freeTerms = res
+        this.allFreeTerms = res
+        console.log(this.allFreeTerms)
       });
       this.searchClicked = true;
+
+    this.EmptyFormElements();
   }
 
-  SelectedTerm(){
-    let date = this.selectedDate + ' ' + this.selectedTerm;
-    console.log(date)
-    this.appointmentPriorityService.AddAppointment(date, 1, this.selectedDoctor)
+  private EmptyFormElements() {
+    this.freeTerms = {} as freeTerms;
+    this.selectedDoctor = 0;
+    this.selectedType = "";
+    this.selectedDate = {} as Date;
+
+    this.sendSelectedDate = {} as Date;
+    this.sendSelectedDoctorId = 0;
+    this.sendSelectedTime = "";
+  }
+
+  SubmitTerm(){
+    
+    let date = this.sendSelectedTime + ' ' + this.DatePipe.transform(this.sendSelectedDate, 'MM/dd/yyyy');
+    this.appointmentPriorityService.AddAppointment(date, 1, this.sendSelectedDoctorId)
     .subscribe(res => {
       console.log(res)
+      this.router.navigate(['/medicalrecords']);
+
     });
+  }
+
+  InsertValues(time: String, date: Date, doctorId: number){
+    this.sendSelectedDate = date;
+    this.sendSelectedTime = time;
+    this.sendSelectedDoctorId = doctorId;
+    console.log('term: ' + this.sendSelectedDate + ' ' + this.sendSelectedTime + ' ' + this.sendSelectedDoctorId)
+  }
+
+  RequestValidation(): boolean{
+    if(Object.keys(this.selectedDate).length === 0 || this.selectedType=="" || this.selectedDoctor==0){
+      return false;
+    }
+    return true;
+  }
+
+  AddTermValidation(): boolean{
+    if(Object.keys(this.sendSelectedDate).length === 0 || this.sendSelectedDoctorId==0 || this.sendSelectedTime==""){
+      return false;
+    }
+    return true;
   }
 }
