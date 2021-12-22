@@ -15,6 +15,8 @@ import { RegistrationLayoutComponent } from './registration/registration-layout/
 import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 import { ActivationComponent } from './registration/activation/activation.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 import { AppointmentPriorityComponent } from './homepage/appointment-priority/appointment-priority.component';
 
 
@@ -28,8 +30,7 @@ import { AppointmentPriorityComponent } from './homepage/appointment-priority/ap
     RegistrationLayoutComponent,
     NotFoundComponent,
     ActivationComponent,
-    
-
+    LoginComponent
   ],
   imports: [
     BrowserModule,
