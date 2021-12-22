@@ -4,3 +4,4 @@ export class Allergy {
     reactionType: string
     reactionTime: string
 }
+

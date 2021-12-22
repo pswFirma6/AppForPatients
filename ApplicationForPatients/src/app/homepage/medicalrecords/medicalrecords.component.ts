@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/shared/patient';
 import { PatientService } from 'src/app/service/patient.service';
 import { viewAppointmentService } from 'src/app/service/viewAppointments.service';
 import { Appointment } from 'src/app/shared/appointment';
@@ -31,26 +30,26 @@ export class MedicalrecordsComponent implements OnInit {
   }
   */
   ngOnInit(): void {
-    this.patientService.getPatient(1).subscribe((
+    this.patientService.getPatient(5).subscribe((
       data:{})=>
        {
         this.patient = data;
         
     });
     
-    this.appointmentService.getAll(1).subscribe(res => {
+    this.appointmentService.getAll(5).subscribe(res => {
       this.allAppoints = res;
     });
         
-    this.appointmentService.getAwaiting(1).subscribe(res => {
+    this.appointmentService.getAwaiting(5).subscribe(res => {
       this.awaitingAppoints = res;
     });
     
-    this.appointmentService.getCancelled(1).subscribe(res => {
+    this.appointmentService.getCancelled(5).subscribe(res => {
       this.cancelledAppoints = res;
     });
     
-    this.appointmentService.getAwaiting(1).subscribe(res => {
+    this.appointmentService.getAwaiting(5).subscribe(res => {
       this.awaitingAppoints = res;
     });
     
