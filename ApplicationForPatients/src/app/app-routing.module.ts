@@ -12,13 +12,6 @@ const routes: Routes = [
 {path: '', redirectTo: 'landingpage', pathMatch: 'full'},
 
   {
-    
-    path: '',
-    component: NotFoundComponent
-   }, 
-
-  {
-
    path: 'landingpage',
    component: LandingpageLayoutComponent
   }, 

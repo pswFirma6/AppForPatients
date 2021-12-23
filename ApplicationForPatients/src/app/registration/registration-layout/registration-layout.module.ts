@@ -8,7 +8,6 @@ import { RegistrationComponent } from "../registration/registration.component";
     imports: [
         CommonModule,
         ReactiveFormsModule
-
     ],
     declarations: [
         RegistrationComponent

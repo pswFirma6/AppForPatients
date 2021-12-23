@@ -17,9 +17,6 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
 import { ActivationComponent } from './registration/activation/activation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
-import { AppointmentPriorityComponent } from './homepage/appointment-priority/appointment-priority.component';
-
-
 
 
 @NgModule({
@@ -31,6 +28,7 @@ import { AppointmentPriorityComponent } from './homepage/appointment-priority/ap
     NotFoundComponent,
     ActivationComponent,
     LoginComponent
+
   ],
   imports: [
     BrowserModule,
@@ -38,14 +36,15 @@ import { AppointmentPriorityComponent } from './homepage/appointment-priority/ap
     AppRoutingModule,
     FormsModule,
     ToastrModule.forRoot(),
+    NgbModule,
     RouterModule.forRoot([ ]),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule
-
   ],
+
   providers: [ ],
   bootstrap: [AppComponent]
 

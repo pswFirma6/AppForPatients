@@ -11,6 +11,8 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ @import '~bs-stepper/dist/css/bs-stepper.min.css';
+
  :root {
     --blue: #4e73df;
     --indigo: #6610f2;
