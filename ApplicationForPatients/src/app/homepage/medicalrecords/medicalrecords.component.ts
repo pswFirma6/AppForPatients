@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/shared/patient';
 import { PatientService } from 'src/app/service/patient.service';
 import { viewAppointmentService } from 'src/app/service/viewAppointments.service';
 import { Appointment } from 'src/app/shared/appointment';
