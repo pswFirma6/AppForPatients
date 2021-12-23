@@ -1,5 +1,4 @@
 import { Allergy } from "./allergy";
-import { DoctorForReg } from "./doctorForReg";
 
 export class Registration {
 
