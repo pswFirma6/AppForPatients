@@ -1,7 +1,8 @@
 import { Allergy } from "./allergy";
 
-export class Registration {
+export class Patient {
 
+    id: number;
     name: string;
     surname: string;
     birthDate: Date;

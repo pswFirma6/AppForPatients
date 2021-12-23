@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageLayoutComponent } from './homepage/homepage-layout/homepage-layout.component';
 import { LandingpageLayoutComponent } from './landingpage/landingpage-layout/landingpage-layout.component';
+import { LoginComponent } from './login/login.component';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 import { ActivationComponent } from './registration/activation/activation.component';
 import { RegistrationLayoutComponent } from './registration/registration-layout/registration-layout.component';
@@ -11,13 +12,6 @@ const routes: Routes = [
 {path: '', redirectTo: 'landingpage', pathMatch: 'full'},
 
   {
-    
-    path: '',
-    component: NotFoundComponent
-   }, 
-
-  {
-
    path: 'landingpage',
    component: LandingpageLayoutComponent
   }, 
@@ -26,7 +20,6 @@ const routes: Routes = [
     component: ActivationComponent
   },
   {
-    
     path: 'pagenotfound',
     component: NotFoundComponent
    }, 
@@ -41,6 +34,10 @@ const routes: Routes = [
     ]
     
   },
+  {
+    path: 'login',
+    component: LoginComponent
+  }, 
   {
     path: 'register',
     component: RegistrationLayoutComponent,

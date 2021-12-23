@@ -15,9 +15,8 @@ import { RegistrationLayoutComponent } from './registration/registration-layout/
 import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
 import { ActivationComponent } from './registration/activation/activation.component';
-import { AppointmentPriorityComponent } from './homepage/appointment-priority/appointment-priority.component';
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -28,7 +27,7 @@ import { AppointmentPriorityComponent } from './homepage/appointment-priority/ap
     RegistrationLayoutComponent,
     NotFoundComponent,
     ActivationComponent,
-    
+    LoginComponent
 
   ],
   imports: [
@@ -37,14 +36,15 @@ import { AppointmentPriorityComponent } from './homepage/appointment-priority/ap
     AppRoutingModule,
     FormsModule,
     ToastrModule.forRoot(),
+    NgbModule,
     RouterModule.forRoot([ ]),
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule
-
   ],
+
   providers: [ ],
   bootstrap: [AppComponent]
 

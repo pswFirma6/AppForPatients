@@ -10,14 +10,12 @@ import {Router} from "@angular/router"
 import { Registration } from 'src/app/shared/registration';
 import { RegistrationService } from 'src/app/service/registration.service';
 
-
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
-
 
   doctors: DoctorForReg[];
   allergies : Allergy [];
@@ -40,7 +38,6 @@ export class RegistrationComponent implements OnInit {
     this.getAvailableDoctors();
     this.patient = new Registration;
 
-    console.log(this.patient);
     this.regForm = this.formBuilder.group({
       name: new FormControl("", [ Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),
       surname: new FormControl('', [Validators.required, Validators.pattern('[a-zA-Z][a-zA-Z ]+')]),

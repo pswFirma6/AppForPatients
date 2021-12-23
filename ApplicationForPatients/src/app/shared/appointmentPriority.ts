@@ -1,4 +1,4 @@
-import { Doctor } from "./Doctor"
+import { Doctor } from "./doctor";
 
 export class freeTermsList{
     freeTermsList: freeTerms[];
