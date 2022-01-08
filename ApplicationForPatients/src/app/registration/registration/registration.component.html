@@ -198,6 +198,16 @@
                 </div>
              </div>
 
+             <div class="form-group">
+               <label>User Picture</label>
+               <input type="file" accept="image/*" class="form-control" formControlName="picture" id="picture" (change)="onFileChanged($event)">
+            </div>
+            
+            <div *ngIf="imageUrl!=null" class="form-group">
+               <img class="card image" width="50%" height="50%" [src]="imageUrl">
+               <!-- <img class="card image" width="50%" height="50%" :src="data:image/png;base64,{{this.picture}}"> -->
+            </div>
+
              <hr class = "zig-zag">
 
              <p style="color:rgb(243, 94, 94);font-size:26px;" >Basic health information and Vital signs of patient:</p> 

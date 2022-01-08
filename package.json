@@ -38,7 +38,14 @@
     "type": "git",
     "url": "https://github.com/pswFirma6/AppForPatients.git"
   },
-  "release":{
-    "branches": ["master", "develop"]
+  "release": {
+    "branches": [
+      "master",
+      "develop"
+    ]
+  },
+  "dependencies": {
+    "@angular/localize": "^13.1.1",
+    "bs-stepper": "^1.7.0"
   }
 }

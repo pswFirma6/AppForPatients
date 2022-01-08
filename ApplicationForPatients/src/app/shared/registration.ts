@@ -1,3 +1,4 @@
+import { Byte } from "@angular/compiler/src/util";
 import { Allergy } from "./allergy";
 
 export class Registration {
@@ -20,4 +21,5 @@ export class Registration {
     weight: number;
     allergies: Allergy[];
     doctorId: number;
+    picture: File;
 }

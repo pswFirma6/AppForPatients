@@ -9,6 +9,7 @@ import { DoctorForReg } from 'src/app/shared/doctorForReg';
 import {Router} from "@angular/router"
 import { Registration } from 'src/app/shared/registration';
 import { RegistrationService } from 'src/app/service/registration.service';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-registration',
@@ -16,6 +17,11 @@ import { RegistrationService } from 'src/app/service/registration.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+  defaultUrl = "assets/img/default-avatar.png";
+  picture = '';
+  imageUrl = this.defaultUrl;
+  imageToUpload = null;
 
   doctors: DoctorForReg[];
   allergies : Allergy [];
@@ -57,8 +63,8 @@ export class RegistrationComponent implements OnInit {
       height: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       weight: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       allergies: new FormControl( [[]]),
-      doctor: new FormControl( [this.chosenDoctor, [Validators.required]])
-     
+      doctor: new FormControl( [this.chosenDoctor, [Validators.required]]),
+      picture: new FormControl('', [Validators.required])
     });
   }
   
@@ -71,7 +77,7 @@ export class RegistrationComponent implements OnInit {
       }
       this.patient.doctorId = this.chosenDoctor.id;
       this.patient.allergies = this.addedAllergies;
-  
+      console.log(this.patient)
       this.patientService.sendRegistration(this.patient).subscribe((response) => {
         this.showToasterSuccess()
         setTimeout(() => this.router.navigate(['/landingpage']), 1000);
@@ -146,4 +152,29 @@ export class RegistrationComponent implements OnInit {
     this.notifyService.showError("You did't complete the form well! ", "Error!")
   }
 
+
+
+  onFileChanged(event: any) {
+    if(!event.target.files.item(0).type.includes('image')){
+      this.imageUrl = this.defaultUrl
+      return;
+    }
+    if(event.target.files){
+      this.regForm.picture = event.target.result
+
+      var binReader = new FileReader();
+      binReader.readAsBinaryString(event.target.files[0]);
+      binReader.onload = (event: any) =>{
+        this.regForm.picture = btoa(event.target.result);
+        // console.log(btoa(event.target.result));
+      }
+
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload=(event: any) =>{
+        this.imageUrl = event.target.result
+        // console.log(this.imageUrl)
+      }
+    }
+  }
 }
