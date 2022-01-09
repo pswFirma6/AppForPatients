@@ -20,19 +20,17 @@
            
         
              <div class="form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" formControlName="email" id="email" ng-model="email" required/>
+                <label>Username</label>
+                <input type="text" class="form-control" formControlName="username" id="username" ng-model="username" required/>
                 
-                <div *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)" 
+                <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)" 
                      class="alert alert-danger" role="alert">
             
-                  <div *ngIf="loginForm.controls['email'].errors.required">
-                     Please, enter your email!
+                  <div *ngIf="loginForm.controls['username'].errors.required">
+                     Please, enter your username!
                   </div>
-                  <div *ngIf="loginForm.controls['email'].errors.email">
-                     Please, enter appropriate email form!
-                  </div>
-                </div>
+
+               </div>
              </div>
 
              <div class="form-group">
@@ -51,7 +49,7 @@
              
              <hr class = "zig-zag">
 
-             <button routerLink="/landingpage"  class="btn blue" (click)="login()">Log in</button>
+             <button class="btn blue" (click)="login()">Log in</button>
 
           </form>
        </div>

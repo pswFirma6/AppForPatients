@@ -23,7 +23,6 @@ export class AppointmentPriorityService {
             doctorId: doctorId, 
             priority: priority
         }
-        console.log(request)
         return this.http.post<freeTermsList>(this.apppointmentUrl + "/priority", request);
     }
 
@@ -33,7 +32,6 @@ export class AppointmentPriorityService {
             patientId: patientId,
             doctorId: doctorId
           }
-        console.log(AddTerm)
         return this.http.post<selectedTerm>(this.apppointmentUrl, AddTerm);
     }
 }

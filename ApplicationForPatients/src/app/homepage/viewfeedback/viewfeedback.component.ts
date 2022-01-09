@@ -14,6 +14,7 @@ export class ViewfeedbackComponent implements OnInit {
   constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit(): void {
+    
     this.feedbackService.getFeedbacks().subscribe(res => {
       this.feedbacks = res;
     });

@@ -45,8 +45,8 @@ export class RegistrationComponent implements OnInit {
       jmbg: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.minLength(13), Validators.maxLength(13)]),
       address: new FormControl('', [Validators.required]),
       phone: new FormControl('', [Validators.required, Validators.pattern('[- +()0-9]+')]),
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       retypePassword: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       gender: new FormControl('', [Validators.required]),
@@ -75,7 +75,13 @@ export class RegistrationComponent implements OnInit {
       this.patientService.sendRegistration(this.patient).subscribe((response) => {
         this.showToasterSuccess()
         setTimeout(() => this.router.navigate(['/landingpage']), 1000);
-      });
+      }, error => {
+        console.log(error);
+        if(error.status === 400)
+          this.showToasterWarning();
+        else if(error.status == 409)
+          this.showToasterInfo();
+    });
         
     } else {
         this.showToasterError();
@@ -144,6 +150,14 @@ export class RegistrationComponent implements OnInit {
  
   showToasterError(){
     this.notifyService.showError("You did't complete the form well! ", "Error!")
+  }
+
+  showToasterWarning(){
+    this.notifyService.showWarning("Username must be more than 5 alphanumeric characters! \n Password must be more than 8 alphanumeric characters!", "Warrning!")
+  }
+
+  showToasterInfo(){
+    this.notifyService.showInfo("User with this username, UMCN or email already exists! ", "Info!");
   }
 
 }

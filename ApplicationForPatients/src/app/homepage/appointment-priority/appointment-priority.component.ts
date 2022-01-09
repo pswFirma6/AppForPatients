@@ -3,6 +3,10 @@ import { Router, RouterLink } from '@angular/router';
 import { AppointmentPriorityService } from 'src/app/service/appointmentPriority.service';
 import { freeTerms, freeTermsList, selectedTerm } from 'src/app/shared/appointmentPriority';
 import { DatePipe } from '@angular/common';
+import { PatientJWT } from 'src/app/shared/patientJWT';
+import jwt_decode from 'jwt-decode';
+import { PatientService } from 'src/app/service/patient.service';
+import { NotificationService } from 'src/app/service/notification_service/notification.service';
 
 @Component({
   selector: 'app-appointment-priority',
@@ -30,8 +34,16 @@ export class AppointmentPriorityComponent implements OnInit {
   public allTypes: any[] = [];
   public doctorType: Record<string, string> = {};
   public doctors: any[] = [];
-  constructor(private appointmentPriorityService: AppointmentPriorityService, private router: Router, private DatePipe: DatePipe) {
-      this.allTypes = [
+
+  public token: any;
+  public decoded: any;
+  public patient: PatientJWT;
+
+  constructor(private appointmentPriorityService: AppointmentPriorityService,
+        private router: Router, private DatePipe: DatePipe, 
+        private patientService : PatientService, private notifyService : NotificationService) {
+      
+        this.allTypes = [
         'allergy_and_immunology',
         'anesthesiology',
         'dermatology',
@@ -83,6 +95,17 @@ export class AppointmentPriorityComponent implements OnInit {
    }
 
   ngOnInit(): void {
+
+      // Here we get username from JSON Web Token
+      this.token = localStorage.getItem("jwt");
+      this.decoded = jwt_decode(this.token?.toString()); 
+      var username = this.decoded['sub'];
+      
+      // Here we get patient by username 
+      this.patientService.getPatientByUserName(username).subscribe( response => { 
+        this.patient = response;
+      });
+
       this.appointmentPriorityService.getDoctors().subscribe(res => {
         this.doctors = res;
       });
@@ -102,7 +125,6 @@ export class AppointmentPriorityComponent implements OnInit {
       this.selectedDate, this.selectedDoctor, this.selectedPriority)
       .subscribe(res => {
         this.allFreeTerms = res
-        console.log(this.allFreeTerms)
       });
       this.searchClicked = true;
 
@@ -123,11 +145,11 @@ export class AppointmentPriorityComponent implements OnInit {
   SubmitTerm(){
     
     let date = this.sendSelectedTime + ' ' + this.DatePipe.transform(this.sendSelectedDate, 'MM/dd/yyyy');
-    this.appointmentPriorityService.AddAppointment(date, 1, this.sendSelectedDoctorId)
+    this.appointmentPriorityService.AddAppointment(date, this.patient.id, this.sendSelectedDoctorId)
     .subscribe(res => {
-      console.log(res)
-      this.router.navigate(['/medicalrecords']);
 
+      this.showToasterSuccess()
+      setTimeout(() => this.router.navigate(['/patient/medicalrecords']), 500);
     });
   }
 
@@ -135,7 +157,6 @@ export class AppointmentPriorityComponent implements OnInit {
     this.sendSelectedDate = date;
     this.sendSelectedTime = time;
     this.sendSelectedDoctorId = doctorId;
-    console.log('term: ' + this.sendSelectedDate + ' ' + this.sendSelectedTime + ' ' + this.sendSelectedDoctorId)
   }
 
   RequestValidation(): boolean{
@@ -151,4 +172,13 @@ export class AppointmentPriorityComponent implements OnInit {
     }
     return true;
   }
+
+  showToasterSuccess(){
+    this.notifyService.showSuccess("The appointment has been added!", "Success!")
+  }
+ 
+  showToasterError(){
+    this.notifyService.showError("You need to complete the form! ", "Error!")
+  }
+
 }
