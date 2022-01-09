@@ -20,6 +20,7 @@ export class RegistrationComponent implements OnInit {
 
   defaultUrl = "assets/img/default-avatar.png";
   picture = '';
+  picture2: any;
   imageUrl = this.defaultUrl;
   imageToUpload = null;
 
@@ -63,8 +64,8 @@ export class RegistrationComponent implements OnInit {
       height: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       weight: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       allergies: new FormControl( [[]]),
-      doctor: new FormControl( [this.chosenDoctor, [Validators.required]]),
-      picture: new FormControl('', [Validators.required])
+      //doctor: new FormControl( [this.chosenDoctor, [Validators.required]]),
+      picture: new FormControl(''),
     });
   }
   
@@ -78,6 +79,7 @@ export class RegistrationComponent implements OnInit {
       this.patient.doctorId = this.chosenDoctor.id;
       this.patient.allergies = this.addedAllergies;
       console.log(this.patient)
+      this.patient.picture = this.picture2;
       this.patientService.sendRegistration(this.patient).subscribe((response) => {
         this.showToasterSuccess()
         setTimeout(() => this.router.navigate(['/landingpage']), 1000);
@@ -166,7 +168,8 @@ export class RegistrationComponent implements OnInit {
       binReader.readAsBinaryString(event.target.files[0]);
       binReader.onload = (event: any) =>{
         this.regForm.picture = btoa(event.target.result);
-        // console.log(btoa(event.target.result));
+        this.picture2 = btoa(event.target.result);
+         console.log(btoa(event.target.result));
       }
 
       var reader = new FileReader();
