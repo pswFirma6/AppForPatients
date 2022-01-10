@@ -64,8 +64,8 @@ export class RegistrationComponent implements OnInit {
       height: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       weight: new FormControl('', [Validators.required, Validators.pattern('[()0-9]+'), Validators.maxLength(3), Validators.minLength(2)]),
       allergies: new FormControl( [[]]),
-      //doctor: new FormControl( [this.chosenDoctor, [Validators.required]]),
-      picture: new FormControl(''),
+      doctor: new FormControl( [this.chosenDoctor, [Validators.required]]),
+      picture: new FormControl('',[Validators.required]),
     });
   }
   
@@ -78,7 +78,7 @@ export class RegistrationComponent implements OnInit {
       }
       this.patient.doctorId = this.chosenDoctor.id;
       this.patient.allergies = this.addedAllergies;
-      console.log(this.patient)
+      //console.log(this.patient)
       this.patient.picture = this.picture2;
       this.patientService.sendRegistration(this.patient).subscribe((response) => {
         this.showToasterSuccess()
@@ -169,7 +169,8 @@ export class RegistrationComponent implements OnInit {
       binReader.onload = (event: any) =>{
         this.regForm.picture = btoa(event.target.result);
         this.picture2 = btoa(event.target.result);
-         console.log(btoa(event.target.result));
+         console.log(this.regForm.picture);
+         //console.log(btoa(event.target.result));
       }
 
       var reader = new FileReader();
