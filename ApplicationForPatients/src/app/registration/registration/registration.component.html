@@ -28,6 +28,11 @@
                      <div *ngIf="regForm.controls['username'].errors.required">
                         Please, enter username!
                      </div>
+
+                     <div *ngIf="regForm.controls['username'].errors.minlength">
+                        Username must include 5 or more digits!
+                     </div>
+
                 </div>
 
             </div>
@@ -42,6 +47,11 @@
                   <div *ngIf="regForm.controls['password'].errors.required">
                      Please, enter password!
                   </div>
+
+                  <div *ngIf="regForm.controls['password'].errors.minlength">
+                     Password must include 8 or more digits!
+                  </div>
+
                 </div>
 
              </div>

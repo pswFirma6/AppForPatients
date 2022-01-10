@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Survey } from 'src/app/shared/survey';
 import { NotificationService } from 'src/app/service/notification_service/notification.service';
 import { SurveyService } from 'src/app/service/survey.service';
+import { PatientService } from 'src/app/service/patient.service';
+import jwt_decode from 'jwt-decode';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-takesurvey',
@@ -13,24 +17,46 @@ export class TakesurveyComponent implements OnInit {
   public surveyHospital: Survey[] = [];
   public surveyStaff: Survey[] = [];
   public surveyApplication: Survey[] = [];
-  constructor(private surveyService: SurveyService, private notifyService : NotificationService) { }
+  public token: any;
+  public decoded: any;
+  public patient: any;
+
+  constructor(private surveyService: SurveyService, private notifyService : NotificationService,
+              private patientService: PatientService, private router: Router) { }
 
   ngOnInit(): void {
+
+    // Here we get username from JSON Web Token
+    this.token = localStorage.getItem("jwt");
+    this.decoded = jwt_decode(this.token?.toString()); 
+    var username = this.decoded['sub'];
+    
+    // Here we get patient by username 
+    this.patientService.getPatientByUserName(username).subscribe( response => { 
+      this.patient = response;
+    });
+
     this.surveyService.initializeSurvey().subscribe(res => {
       this.survey = res;
       this.sort();
-      console.log(this.survey)
     });
   }
 
   public takeSurvey(): void {
-    console.log(this.survey)
+    
     if(!this.validateSurvey()){
       this.showToasterError()
       return;
     }
+
+    for(let s of this.survey){
+      s.rate = Number(s.rate)
+      s.personId = this.patient.id;
+    }
+
     this.surveyService.addSurvey(this.survey).subscribe((response)=>{
       this.showToasterSuccess();
+      setTimeout(() => this.router.navigate(['/patient/medicalrecords']), 500);
     });
   }
 

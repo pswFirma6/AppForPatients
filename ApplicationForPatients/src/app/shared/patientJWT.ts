@@ -1,7 +1,8 @@
 import { Allergy } from "./allergy";
 
-export class Registration {
+export class PatientJWT {
 
+    id: number;
     name: string;
     surname: string;
     birthDate: Date;
@@ -13,12 +14,11 @@ export class Registration {
     gender: string;
     city: string;
     country: string;
-    userType: number;
+    userType: string;
     bloodType: string;
     rhfactor: string;
     height: number;
     weight: number;
     allergies: Allergy[];
     doctorId: number;
-    picture: File;
 }

@@ -19,5 +19,4 @@ export class Patient {
     Weight:number;       
     Doctor : Doctor;
     
-
 }

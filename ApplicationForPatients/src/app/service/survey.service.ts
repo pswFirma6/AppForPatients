@@ -17,10 +17,6 @@ export class SurveyService {
     }
 
     public addSurvey(survey: Survey[]): Observable<Survey[]>{
-        for(let s of survey){
-            s.rate = Number(s.rate)
-            s.personId = "1"
-        }
         return this.http.post<Survey[]>(this.surveyUrl + "/TakeSurvey", survey);
     }
 }

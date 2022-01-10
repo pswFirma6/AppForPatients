@@ -17,7 +17,13 @@ import { NotFoundComponent } from './page-not-found/not-found/not-found.componen
 import { ActivationComponent } from './registration/activation/activation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthGuard } from './service/guards/auth-guard.service';
 
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   declarations: [
@@ -42,10 +48,17 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     HomepageLayoutModule,
     LandingpageLayoutModule,
-    RegistrationLayoutModule
+    RegistrationLayoutModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:44392"],
+        disallowedRoutes: []
+      }
+    })
   ],
 
-  providers: [ ],
+  providers: [ AuthGuard ],
   bootstrap: [AppComponent]
 
 })
