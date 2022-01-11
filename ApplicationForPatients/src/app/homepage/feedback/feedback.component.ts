@@ -61,7 +61,7 @@ export class FeedbackComponent implements OnInit {
   }
  
   showToasterError(){
-    this.notifyService.showError("You need to complete the form! ", "Error!")
+    this.notifyService.showError("You need to complete the form!", "Error!")
   }
 
   isCheckedAnonymous(value: boolean){

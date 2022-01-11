@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
         const token = (<any>response).token;
         localStorage.setItem("jwt", token);
         this.invalidLogin = false;
-        this.showToasterSuccess();
+        // this.showToasterSuccess();
         setTimeout(() => this.router.navigate(['/patient/medicalrecords']), 200);
       }
     }, error => {
@@ -49,8 +49,8 @@ export class LoginComponent implements OnInit {
     this.notifyService.showError("Username or password is incorrect! ", "Error!")
   }
 
-  showToasterSuccess(){
-    this.notifyService.showSuccess("Login successful!", "Success!")
-  }
+  // showToasterSuccess(){
+  //   this.notifyService.showSuccess("Login successful!", "Success!")
+  // }
 
 }
