@@ -126,35 +126,8 @@
                             
                             
                             <hr class = "zig-zag">
-                            <p style="color:rgb(243, 94, 94);font-size:40px;" >Appointments:</p>
-                            <div class="row">
-                                <div class="card">
-                                    <div class="header">
-                                        <h2 class="title">All appointments</h2>
-                                    </div>
-                                    <div class="content">
-                                        <div class="content table-responsive table-full-width">
-                                            <table class="table">
-                                              <thead>
-                                                  <tr>
-                                                    <th class="text-center">Date</th>
-                                                    <th class="text-center">Doctor</th>
-                                                  </tr>
-                                              </thead>
-                                            <tbody>
-                                               <ng-container *ngFor="let all of allAppoints">
-                                                   <tr>
-                                                       <td class="text-center">{{all.date}}</td>
-                                                       <td class="text-center">{{all.doctor.name}}</td>
-                                                       
-                                                   </tr>
-                                               </ng-container>
-                                            </tbody>
-                                            </table>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
+                            
                             
                             <div class="row">
                                 <div class="card">
@@ -173,8 +146,8 @@
                                             <tbody>
                                                 <ng-container *ngFor="let all of awaitingAppoints">
                                                     <tr>
-                                                        <td class="text-center">{{all.date}}</td>
-                                                        <td class="text-center">{{all.doctor.name}}</td>
+                                                        <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}}</td>
+                                                        <td class="text-center">{{all.doctor.name}}  {{all.doctor.surname}}</td>
                                                        <!---- <td class="text-center"><button class="btn btn-danger btn-sm" (click) = "cancelAppointment(all)">Reject</button></td> --->
                                                     </tr>
                                                 </ng-container>
@@ -202,9 +175,9 @@
                                             <tbody>
                                                 <ng-container *ngFor="let all of completedAppoints">
                                                     <tr>
-                                                        <td class="text-center">{{all.date}}</td>
-                                                        <td class="text-center">{{all.doctor.name}}</td>
-                                                        <td><a role="button" href="/takesurvey" class="btn btn-outline-success">Take survey</a></td>
+                                                        <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}} {{all.startTime| date: "HH:mm:ss"}}</td>
+                                                        <td class="text-center">{{all.doctor.name}} {{all.doctor.surname}}</td>
+                                                        <td><a role="button" href="/patient/takesurvey" class="btn btn-outline-success">Take survey</a></td>
                                                     </tr>
                                                 </ng-container>
                                             </tbody>
@@ -231,8 +204,8 @@
                                             <tbody>
                                                 <ng-container *ngFor="let all of cancelledAppoints">
                                                     <tr>
-                                                        <td class="text-center">{{all.date}}</td>
-                                                        <td class="text-center">{{all.doctor.name}}</td>
+                                                        <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}}</td>
+                                                        <td class="text-center">{{all.doctor.name}} {{all.doctor.surname}}</td>
                                                     </tr>
                                                 </ng-container>
                                             </tbody>

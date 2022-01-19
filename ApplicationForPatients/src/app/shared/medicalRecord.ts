@@ -1,7 +1,8 @@
 import { Allergy } from "./allergy";
+import { Doctor } from "./doctor";
 
-export class PatientJWT {
-
+export class MedicalRecord {
+    
     id: number;
     name: string;
     surname: string;

@@ -3,6 +3,8 @@ import { PatientService } from 'src/app/service/patient.service';
 import { viewAppointmentService } from 'src/app/service/viewAppointments.service';
 import { Appointment } from 'src/app/shared/appointment';
 import jwt_decode from 'jwt-decode';
+import { MedicalRecord } from 'src/app/shared/medicalRecord';
+
 
 @Component({
   selector: 'app-medicalrecords',
@@ -12,7 +14,7 @@ import jwt_decode from 'jwt-decode';
 
 export class MedicalrecordsComponent implements OnInit {
 
-  public patient : any;
+  public patient : MedicalRecord;
   public allAppoints : Appointment[] = [];
   public completedAppoints : Appointment[] = [];
   public awaitingAppoints : Appointment[] = [];
@@ -41,23 +43,27 @@ export class MedicalrecordsComponent implements OnInit {
     // Here we get patient by username 
     this.patientService.getPatientByUserName(username).subscribe( response => { 
       this.patient = response;
+
+      console.log(this.patient);
+
+      this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
+        this.awaitingAppoints = res;
+      });
+
+      this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
+        this.cancelledAppoints = res;
+      });
+      
+      this.appointmentService.getCompleted(this.patient.id).subscribe(res => {
+        this.completedAppoints = res;
+      });
+
     });
+  
     
-    this.appointmentService.getAll(this.patient.id).subscribe(res => {
-      this.allAppoints = res;
-    });
-        
-    this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
-      this.awaitingAppoints = res;
-    });
     
-    this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
-      this.cancelledAppoints = res;
-    });
     
-    this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
-      this.awaitingAppoints = res;
-    });
+   
     
     
   }

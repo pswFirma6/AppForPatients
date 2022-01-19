@@ -1,8 +1,10 @@
 import { DoctorForReg } from "./doctorForReg";
 
 export class Appointment {
-    date: Date;
+    startTime: Date;
+    patientId: number;
     doctor: DoctorForReg;
     surveyTaken : boolean;
     state : number;
+    dateCancelled : Date;
 }

@@ -16,16 +16,12 @@ export class viewAppointmentService {
 
     constructor(private http: HttpClient){ }
 
-    public getAll(id: number): Observable<Appointment[]>{
-        
-        return this.http.get<Appointment[]>(this.allAppointmentsUrl +"/" +id);
-    }
     public getCompleted(id: number): Observable<Appointment[]>{
         
         return this.http.get<Appointment[]>(this.completedAppointmentsUrl +"/" +id);
     }
     public getAwaiting(id: number): Observable<Appointment[]>{
-        
+        console.log("aaa");
         return this.http.get<Appointment[]>(this.awaitingAppointmentsUrl +"/" +id);
     }
     public getCancelled(id: number): Observable<Appointment[]>{
