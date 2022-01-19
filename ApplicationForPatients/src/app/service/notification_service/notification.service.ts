@@ -15,7 +15,7 @@ export class NotificationService {
     }
     
     showError(message: any, title: any){
-        this.toastr.error(message, title)
+        this.toastr.error(message, title, {timeOut: 10000})
     }
     
     showInfo(message: any, title: any){

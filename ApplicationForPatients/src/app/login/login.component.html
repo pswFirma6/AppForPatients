@@ -21,7 +21,7 @@
              <div class="form-group">
 
                 <label>Username</label>
-                <input type="text" class="form-control" formControlName="username" id="username" ng-model="username" required/>
+                <input type="text" class="form-control" formControlName="username" placeholder="Username" id="username" ng-model="username" required/>
                 
                 <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)" 
                      class="alert alert-danger" role="alert">
@@ -36,7 +36,7 @@
 
              <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control" formControlName="password" placeholder="Password" required>
+                <input type="password" class="form-control" formControlName="password" placeholder="Password" id="password" required>
                 
                 <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)" 
                      class="alert alert-danger" role="alert">
@@ -50,7 +50,7 @@
              
              <hr class = "zig-zag">
 
-             <button class="btn blue" (click)="login()">Log in</button>
+             <button class="btn blue" id="login" (click)="login()">Log in</button>
 
           </form>
        </div>

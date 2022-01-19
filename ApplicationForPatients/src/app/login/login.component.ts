@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
   }
 
   showToasterSuccess(){
-    this.notifyService.showSuccess("Login successfull!", "Success!")
+    this.notifyService.showSuccess("Login successful!", "Success!")
   }
 
 }
