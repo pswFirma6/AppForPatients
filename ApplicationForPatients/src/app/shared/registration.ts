@@ -1,3 +1,4 @@
+import { Byte } from "@angular/compiler/src/util";
 import { Allergy } from "./allergy";
 
 export class Registration {

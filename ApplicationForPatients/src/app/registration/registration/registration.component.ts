@@ -9,6 +9,7 @@ import { DoctorForReg } from 'src/app/shared/doctorForReg';
 import {Router} from "@angular/router"
 import { Registration } from 'src/app/shared/registration';
 import { RegistrationService } from 'src/app/service/registration.service';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 
 @Component({

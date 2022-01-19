@@ -25,6 +25,7 @@ export class RegistrationService {
   }
 
   sendRegistration(registration: Registration): Observable<Registration> {
+    console.log(registration)
     return this.http.post<Registration>(this.registrationUrl, registration)
   }
 
