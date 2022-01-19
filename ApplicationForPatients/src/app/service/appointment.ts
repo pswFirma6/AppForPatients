@@ -31,6 +31,10 @@ import { AppointmentSchedule } from "../shared/appointmentSchedule";
       );
     }
 
+    public getPrescription(): Observable<string>{
+      return this.http.get<string>(this.appointmentUrl+'/prescription');
+    }
+
     handleError(error: any) {
 
     let errorMessage = '';

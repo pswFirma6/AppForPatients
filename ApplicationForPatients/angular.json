@@ -34,6 +34,7 @@
               "src/assets/css/demo.css",
               "node_modules/@fortawesome/fontawesome-svg-core/styles.css",
               "node_modules/ngx-toastr/toastr.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css"
               
             ],

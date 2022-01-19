@@ -178,6 +178,7 @@
                                                         <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}} {{all.startTime| date: "HH:mm:ss"}}</td>
                                                         <td class="text-center">{{all.doctor.name}} {{all.doctor.surname}}</td>
                                                         <td><a role="button" href="/patient/takesurvey" class="btn btn-outline-success">Take survey</a></td>
+                                                        <td><button (click)="openDialog()" class="btn btn-outline-success">Prescription</button></td>
                                                     </tr>
                                                 </ng-container>
                                             </tbody>
@@ -261,4 +262,5 @@
         </div>
     </div>
 </div>
+
 
