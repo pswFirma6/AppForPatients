@@ -19,6 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './service/guards/auth-guard.service';
+import { PresciptionsComponent } from './presciptions/presciptions.component';
+import { MaterialModule } from './material.module';
+
 
 
 export function tokenGetter() {
@@ -33,7 +36,8 @@ export function tokenGetter() {
     RegistrationLayoutComponent,
     NotFoundComponent,
     ActivationComponent,
-    LoginComponent
+    LoginComponent,
+    PresciptionsComponent
 
   ],
   imports: [
@@ -49,6 +53,7 @@ export function tokenGetter() {
     HomepageLayoutModule,
     LandingpageLayoutModule,
     RegistrationLayoutModule,
+    MaterialModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -59,7 +64,7 @@ export function tokenGetter() {
   ],
 
   providers: [ AuthGuard ],
-  bootstrap: [AppComponent]
-
+  bootstrap: [AppComponent],
+  entryComponents: [PresciptionsComponent]
 })
 export class AppModule { }
