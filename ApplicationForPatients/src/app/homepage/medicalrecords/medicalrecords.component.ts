@@ -16,7 +16,6 @@ import { PresciptionsComponent } from 'src/app/presciptions/presciptions.compone
 })
 
 export class MedicalrecordsComponent implements OnInit {
-
   public patient: MedicalRecord;
   public allAppoints: Appointment[] = [];
   public completedAppoints: Appointment[] = [];
@@ -26,6 +25,7 @@ export class MedicalrecordsComponent implements OnInit {
   public decoded: any;
 
   constructor(private patientService: PatientService, private viewAppointmentService: viewAppointmentService, public dialog: MatDialog, private appointmentService: AppointmentService) { }
+
   /*
   public cancelAppointment(appointment: Appointment): boolean {
     this.appointmentService.cancelAppointment(appointment.date)
@@ -38,33 +38,28 @@ export class MedicalrecordsComponent implements OnInit {
   */
   ngOnInit(): void {
 
-    // Here we get username from JSON Web Token
-    this.token = localStorage.getItem("jwt");
-    this.decoded = jwt_decode(this.token?.toString());
+      this.token = localStorage.getItem("jwt");
+    this.decoded = jwt_decode(this.token?.toString()); 
     var username = this.decoded['sub'];
-
+    
     // Here we get patient by username 
-    this.patientService.getPatientByUserName(username).subscribe(response => {
+    this.patientService.getPatientByUserName(username).subscribe( response => { 
       this.patient = response;
 
       console.log(this.patient);
 
-      this.viewAppointmentService.getAwaiting(this.patient.id).subscribe(res => {
+      this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
         this.awaitingAppoints = res;
       });
 
-      this.viewAppointmentService.getCancelled(this.patient.id).subscribe(res => {
+      this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
         this.cancelledAppoints = res;
       });
-
-      this.viewAppointmentService.getCompleted(this.patient.id).subscribe(res => {
+      
+      this.appointmentService.getCompleted(this.patient.id).subscribe(res => {
         this.completedAppoints = res;
       });
-
     });
-
-
-
 
 
 
@@ -83,9 +78,7 @@ export class MedicalrecordsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
+
   }
 }
-
-
-
 

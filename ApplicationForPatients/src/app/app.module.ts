@@ -23,6 +23,7 @@ import { PresciptionsComponent } from './presciptions/presciptions.component';
 import { MaterialModule } from './material.module';
 
 
+
 export function tokenGetter() {
   return localStorage.getItem("jwt");
 }
@@ -65,7 +66,5 @@ export function tokenGetter() {
   providers: [ AuthGuard ],
   bootstrap: [AppComponent],
   entryComponents: [PresciptionsComponent]
-
-
 })
 export class AppModule { }
