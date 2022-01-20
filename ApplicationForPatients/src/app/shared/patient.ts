@@ -1,23 +1,26 @@
+import { Allergy } from "./allergy";
 import { Doctor } from "./doctor";
 
 export class Patient {
-    Name:string ;
-    Surname:string;
-    BirthDate : Date;
-    Jmbg: string;
-    Address:string;
-    Phone:string;
-    Email:string;
-    Username:string;    
-    Password:string;    
-    Gender : string;     
-    City:string;
-    Country:string;
-    BloodType:string;
-    RhFactor:string;
-    Height:number;    
-    Weight:number;       
-    Doctor : Doctor;
     
+    name:string ;
+    surname:string;
+    birthDate : Date;
+    jmbg: string;
+    address:string;
+    phone:string;
+    email:string;
+    username:string;    
+    password:string;    
+    gender : string;     
+    city:string;
+    country:string;
+    bloodType:string;
+    rhFactor:string;
+    height:number;    
+    weight:number;       
+    doctor : Doctor;
+    picture: File;
 
+    ;
 }

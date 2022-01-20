@@ -14,12 +14,16 @@ export class LandingpageLayoutComponent implements OnInit {
   constructor(private feedbackService: FeedbackService) { }
 
   ngOnInit(): void {
-
+    
+    this.logOut()
     this.feedbackService.getFeedbacks().subscribe(res => {
       this.feedbacks = res;
     });
     
-    
+  }
+
+  logOut() {
+    localStorage.removeItem("jwt");
   }
 
 }

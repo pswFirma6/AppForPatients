@@ -11,7 +11,9 @@ import { NotificationService } from 'src/app/service/notification_service/notifi
 import { Router } from '@angular/router';
 import { AppointmentSchedule } from 'src/app/shared/appointmentSchedule';
 import { Doctor } from 'src/app/shared/doctor';
-
+import { PatientService } from 'src/app/service/patient.service';
+import { PatientJWT } from 'src/app/shared/patientJWT';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-new-appointment',
@@ -47,20 +49,32 @@ export class NewAppointmentComponent implements OnInit {
   clicked: boolean = true;
   checkDate: boolean = true;
   today: any;
+  token: any;
+  decoded: any;
+  patient: PatientJWT;
+  public tableData2: any;
   //isDisabled: any; 
  
 
   constructor(private calendar: NgbCalendar, private formBuilder: FormBuilder, 
             private notifyService : NotificationService, private doctorService : DoctorService, 
-            private appointmentService : AppointmentService, private router: Router) {
+            private appointmentService : AppointmentService, private router: Router,
+            private patientService : PatientService) {
           
   }
 
-
-  public tableData2: any;
-
   ngOnInit() {
-  
+    
+    // Here we get username from JSON Web Token
+    this.token = localStorage.getItem("jwt");
+    this.decoded = jwt_decode(this.token?.toString()); 
+    var username = this.decoded['sub'];
+    
+    // Here we get patient by username 
+    this.patientService.getPatientByUserName(username).subscribe( response => { 
+      this.patient = response;
+    });
+    
     this.today = { year: new Date().getFullYear(),
                    month: new Date().getMonth() + 1, 
                    day: new Date().getDay() };
@@ -84,13 +98,12 @@ export class NewAppointmentComponent implements OnInit {
     this.tableData2 = {
       headerRow: [ 'Date', 'Time' ]
     }
+
   }
 
   public get doctorTypeEnum(): typeof DoctorType {
     return DoctorType; 
   }
-
- 
 
   getFreeDoctorTerms(doctor: Doctor): void {
       
@@ -120,7 +133,6 @@ export class NewAppointmentComponent implements OnInit {
     this.selectedDoctorId = event;
   }
 
-
   /** Select Date **/
   next() {
     this.stepper.next();
@@ -147,7 +159,9 @@ export class NewAppointmentComponent implements OnInit {
 
     this.appointmentForm = new AppointmentSchedule();
     this.appointmentForm.doctorId = this.selectedDoctor.id;
-    this.appointmentForm.patientId = 1;
+    // Here we set patient Id to new feedback
+    this.appointmentForm.patientId = this.patient.id;
+
     this.appointmentForm.startTime = this.selectedFreeTerm;
    
 

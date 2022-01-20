@@ -14,8 +14,8 @@ export const ROUTES: RouteInfo[] = [
   { path: '/patient/viewfeedback', title: 'View feedback', icon:'pe-7s-news-paper', class: '' },
   { path: '/patient/medicalrecords', title: 'Medical records', icon:'pe-7s-user', class: '' },
   { path: '/patient/newAppointment', title: 'Create appointment', icon:'pe-7s-plus', class: '' },
-  { path: '/patient/appointmentPriority', title: 'Appointment / priority', icon:'pe-7s-note2', class: '' },
-  { path: '/patient/takesurvey', title: 'Take survey', icon:'pe-7s-check', class: '' }
+  { path: '/patient/appointmentPriority', title: 'Appointment / priority', icon:'pe-7s-note2', class: '' }
+  
 ];
 
 @Component({
@@ -27,16 +27,18 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
     
   menuItems: any[];
-  
+
     constructor() { }
-  
+
     ngOnInit() {
       this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
+    
     isMobileMenu() {
       if ( window.innerWidth > 991) {
         return false;
       }
       return true;
     }
+    
 }

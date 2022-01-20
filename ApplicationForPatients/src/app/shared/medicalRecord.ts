@@ -1,8 +1,9 @@
-import { Byte } from "@angular/compiler/src/util";
 import { Allergy } from "./allergy";
+import { Doctor } from "./doctor";
 
-export class Registration {
-
+export class MedicalRecord {
+    
+    id: number;
     name: string;
     surname: string;
     birthDate: Date;
@@ -14,7 +15,7 @@ export class Registration {
     gender: string;
     city: string;
     country: string;
-    userType: number;
+    userType: string;
     bloodType: string;
     rhfactor: string;
     height: number;
@@ -22,4 +23,5 @@ export class Registration {
     allergies: Allergy[];
     doctorId: number;
     picture: File;
+    
 }
