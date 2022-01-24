@@ -48,17 +48,17 @@ export class MedicalrecordsComponent implements OnInit {
 
       console.log(this.patient);
 
-      this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
-        this.awaitingAppoints = res;
-      });
+      // this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
+      //   this.awaitingAppoints = res;
+      // });
 
-      this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
-        this.cancelledAppoints = res;
-      });
+      // this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
+      //   this.cancelledAppoints = res;
+      // });
       
-      this.appointmentService.getCompleted(this.patient.id).subscribe(res => {
-        this.completedAppoints = res;
-      });
+      // this.appointmentService.getCompleted(this.patient.id).subscribe(res => {
+      //   this.completedAppoints = res;
+      // });
     });
 
 
