@@ -3,6 +3,21 @@
   --blue:#0188DF;
   --black:#354046;
 }
+.carousel-image{
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+.carousel-container {
+  background: white;
+  margin: 0 auto;
+  padding: 5%;
+  width: 75%;
+}
+
+.crsl-background{
+  background-color: rgb(0, 0, 0, .5);
+}
 
 *{
   font-family: 'Roboto', sans-serif;
@@ -544,5 +559,4 @@ header .fa-times{
   .contact form input[type="submit"]{
     width:100%;
   }
-
 }
