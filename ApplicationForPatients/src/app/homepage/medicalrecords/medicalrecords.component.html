@@ -4,7 +4,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="header">
-                        <h2 class="title">Medical record of {{patient.name}} {{patient.surname}} </h2>
+                        <h2 class="title">Medical record of {{patient?.name}} {{patient?.surname}} </h2>
                     </div>
                     <div class="content">
                         <form>
@@ -12,24 +12,24 @@
                                 <hr class = "zig-zag">
                                 <p style="color:rgb(243, 94, 94);font-size:40px;" >Patient information:</p> 
                                 <div>
-                                     <img class="card image" width="10%" height="50%" :src="data:image/png;base64,{{patient.picture}}"> 
+                                     <img class="card image" width="10%" height="50%" :src="data:image/png;base64,{{patient?.picture}}"> 
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input  readonly type="text" class="form-control"  placeholder="Name" value="{{patient.name}}">
+                                        <input  readonly type="text" class="form-control"  placeholder="Name" value="{{patient?.name}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Last name</label>
-                                        <input  readonly type="text" class="form-control" placeholder="Last name" value="{{patient.surname}}">
+                                        <input  readonly type="text" class="form-control" placeholder="Last name" value="{{patient?.surname}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label for="exampleInputEmail1">Username</label>
-                                        <input  readonly type="text" class="form-control" placeholder="{{patient.username}}">
+                                        <input  readonly type="text" class="form-control" placeholder="{{patient?.username}}">
                                     </div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input readonly  type="text" class="form-control" placeholder="Home Address" value="{{patient.address}}">
+                                        <input readonly  type="text" class="form-control" placeholder="Home Address" value="{{patient?.address}}">
                                     </div>
                                 </div>
                             </div>
@@ -49,13 +49,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input readonly  type="text" class="form-control" placeholder="City" value="{{patient.city}}">
+                                        <input readonly  type="text" class="form-control" placeholder="City" value="{{patient?.city}}">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Country</label>
-                                        <input readonly  type="text" class="form-control" placeholder="Country" value="{{patient.country}}">
+                                        <input readonly  type="text" class="form-control" placeholder="Country" value="{{patient?.country}}">
                                     </div>
                                 </div>
                                 
@@ -65,13 +65,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Date of birth</label>
-                                        <input readonly  type="number" class="form-control" placeholder="{{patient.birthDate| date: 'dd/MM/yyyy'}}">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient?.birthDate| date: 'dd/MM/yyyy'}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Phone</label>
-                                        <input readonly  type="number" class="form-control" placeholder="{{patient.phone}}">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient?.phone}}">
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>UMCN</label>
-                                        <input readonly  type="number" class="form-control" placeholder="{{patient.jmbg}}" >
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient?.jmbg}}" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -104,13 +104,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>HEIGHT (cm)</label>
-                                        <input readonly  type="number" class="form-control" placeholder="{{patient.height}}">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient?.height}}">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Weight (kg)</label>
-                                        <input readonly  type="number" class="form-control" placeholder="{{patient.weight}}">
+                                        <input readonly  type="number" class="form-control" placeholder="{{patient?.weight}}">
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@
                                                 <ng-container *ngFor="let all of awaitingAppoints">
                                                     <tr>
                                                         <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}}</td>
-                                                        <td class="text-center">{{all.doctor.name}}  {{all.doctor.surname}}</td>
+                                                        <td class="text-center">{{all.doctor?.name}}  {{all.doctor?.surname}}</td>
                                                        <!---- <td class="text-center"><button class="btn btn-danger btn-sm" (click) = "cancelAppointment(all)">Reject</button></td> --->
                                                     </tr>
                                                 </ng-container>
@@ -178,7 +178,8 @@
                                                         <td class="text-center">{{all.startTime| date: 'dd/MM/yyyy'}} {{all.startTime| date: "HH:mm:ss"}}</td>
                                                         <td class="text-center">{{all.doctor.name}} {{all.doctor.surname}}</td>
                                                         <td><a role="button" href="/patient/takesurvey" class="btn btn-outline-success">Take survey</a></td>
-                                                        <td><button (click)="openDialog()" class="btn btn-outline-success">Prescription</button></td>
+                                                        <td><button (click)="openPrescriptionDialog(all)" class="btn btn-outline-success">Prescription</button></td>
+                                                        <td><button (click)="openReportDialog(all)" class="btn btn-outline-success">Report</button></td>
                                                     </tr>
                                                 </ng-container>
                                             </tbody>
