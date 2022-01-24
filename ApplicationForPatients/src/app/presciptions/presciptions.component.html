@@ -1,7 +1,21 @@
-<h1 mat-dialog-title>Prescription</h1>
+<h1 mat-dialog-title>{{title}}</h1>
 <div mat-dialog-content>
-  <p>{{data.recepti}}</p>
 
+  <div *ngIf="title == 'Report'; else other_content">
+  <p>Doctor Name: {{prescription.doctorName}}</p>
+  <p>Patient Name: {{prescription.patientName}}</p>
+  <p>Diagnosis: {{prescription.therapy.diagnosis}}</p>
+</div>
+
+<ng-template #other_content>
+  <p>Medicine Name: {{prescription.medicineName}}</p>
+  <p>Pharmacy Name: {{prescription.pharmacyName}}</p>
+  <p>Quantity: {{prescription.dosage.quantity}}</p>
+  <p>Recommended Dose: {{prescription.dosage.recommendedDose}}</p><br>
+  <p>By doctor: <u>{{prescription.doctorName}}</u></p>
+ </ng-template>
+
+  
 </div>
 <div mat-dialog-actions>
   <button  mat-button (click)="onNoClick()">Okay</button>

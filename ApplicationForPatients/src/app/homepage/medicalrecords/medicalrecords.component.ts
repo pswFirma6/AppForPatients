@@ -38,47 +38,54 @@ export class MedicalrecordsComponent implements OnInit {
   */
   ngOnInit(): void {
 
-      this.token = localStorage.getItem("jwt");
-    this.decoded = jwt_decode(this.token?.toString()); 
+    this.token = localStorage.getItem("jwt");
+    this.decoded = jwt_decode(this.token?.toString());
     var username = this.decoded['sub'];
-    
+
     // Here we get patient by username 
-    this.patientService.getPatientByUserName(username).subscribe( response => { 
+    this.patientService.getPatientByUserName(username).subscribe(response => {
       this.patient = response;
 
       console.log(this.patient);
 
-      this.appointmentService.getAwaiting(this.patient.id).subscribe(res => {
+      this.viewAppointmentService.getAwaiting(this.patient.id).subscribe(res => {
         this.awaitingAppoints = res;
       });
 
-      this.appointmentService.getCancelled(this.patient.id).subscribe(res => {
+      this.viewAppointmentService.getCancelled(this.patient.id).subscribe(res => {
         this.cancelledAppoints = res;
       });
-      
-      this.appointmentService.getCompleted(this.patient.id).subscribe(res => {
+
+      this.viewAppointmentService.getCompleted(this.patient.id).subscribe(res => {
         this.completedAppoints = res;
       });
     });
-
-
-
-
   }
 
+  openPrescriptionDialog(apoiment: any): void {
+    console.log(apoiment);
+      const dialogRef = this.dialog.open(PresciptionsComponent, {
+        height: '400px',
+        width: '400px',
+        data: { recepti:apoiment.prescription, title: "Prescription" },
+      });
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(PresciptionsComponent, {
-      height: '600px',
-      width: '400px',
-      data: {recepti: this.appointmentService.getPrescription},
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
+  }
 
-    });
+  openReportDialog(apoiment: any): void {
+    console.log(apoiment);
+      const dialogRef = this.dialog.open(PresciptionsComponent, {
+        height: '300px',
+        width: '400px',
+        data: { recepti:apoiment.prescription, title: "Report" },
+      });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed');
+      });
   }
 }
 
