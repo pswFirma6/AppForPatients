@@ -12,6 +12,7 @@ import { RegistrationService } from 'src/app/service/registration.service';
 import { invalid } from '@angular/compiler/src/render3/view/util';
 
 
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
