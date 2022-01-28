@@ -10,13 +10,13 @@ export interface DialogData {
 })
 export class PresciptionsComponent {
   
-  prescription: any = null;
+  appointments: any = null;
   title: string = '';
   constructor(
     public dialogRef: MatDialogRef<PresciptionsComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) { 
-    this.prescription = data.recepti;
+    this.appointments = data.appointments;
     this.title = data.title;
   }
 

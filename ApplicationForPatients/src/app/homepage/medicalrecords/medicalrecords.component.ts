@@ -62,12 +62,12 @@ export class MedicalrecordsComponent implements OnInit {
     });
   }
 
-  openPrescriptionDialog(apoiment: any): void {
-    console.log(apoiment);
+  openPrescriptionDialog(appointment: any): void {
+    console.log(appointment);
       const dialogRef = this.dialog.open(PresciptionsComponent, {
         height: '400px',
         width: '400px',
-        data: { recepti:apoiment.prescription, title: "Prescription" },
+        data: { appointments:appointment, title: "Prescription" },
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -75,12 +75,12 @@ export class MedicalrecordsComponent implements OnInit {
       });
   }
 
-  openReportDialog(apoiment: any): void {
-    console.log(apoiment);
+  openReportDialog(appointment: any): void {
+    console.log(appointment);
       const dialogRef = this.dialog.open(PresciptionsComponent, {
-        height: '300px',
+        height: '350px',
         width: '400px',
-        data: { recepti:apoiment.prescription, title: "Report" },
+        data: { appointments:appointment, title: "Report" },
       });
 
       dialogRef.afterClosed().subscribe(result => {

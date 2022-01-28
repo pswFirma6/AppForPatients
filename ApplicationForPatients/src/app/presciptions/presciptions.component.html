@@ -2,17 +2,18 @@
 <div mat-dialog-content>
 
   <div *ngIf="title == 'Report'; else other_content">
-  <p>Doctor Name: {{prescription.doctorName}}</p>
-  <p>Patient Name: {{prescription.patientName}}</p>
-  <p>Diagnosis: {{prescription.therapy.diagnosis}}</p>
+  <p>Appointment time: {{appointments.startTime | date:'medium'}}</p>
+  <p>Doctor Name: {{appointments.doctor.name}} {{appointments.doctor.surname}}</p>
+  <p>Patient Name: {{appointments.patient.name}} {{appointments.patient.surname}}</p>
+  <p>Diagnosis: {{appointments.doctorReport}}</p>
 </div>
 
 <ng-template #other_content>
-  <p>Medicine Name: {{prescription.medicineName}}</p>
-  <p>Pharmacy Name: {{prescription.pharmacyName}}</p>
-  <p>Quantity: {{prescription.dosage.quantity}}</p>
-  <p>Recommended Dose: {{prescription.dosage.recommendedDose}}</p><br>
-  <p>By doctor: <u>{{prescription.doctorName}}</u></p>
+  <p>Medicine Name: {{appointments.prescription.medicineName}}</p>
+  <p>Pharmacy Name: {{appointments.prescription.pharmacyName}}</p>
+  <p>Quantity: {{appointments.prescription.dosage.quantity}}</p>
+  <p>Recommended Dose: {{appointments.prescription.dosage.recommendedDose}}</p><br>
+  <p>By doctor: <u>{{appointments.prescription.doctorName}}</u></p>
  </ng-template>
 
   
