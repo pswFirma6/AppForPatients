@@ -1,60 +1,77 @@
-<div>
-    <div>
-        <h2>Make an appointment</h2>
-    </div>
-    <div>
-        <div class="form-group">
-            <div>
-                <p>Date:</p>
-                <input [ngModel]="selectedDate" (ngModelChange)="selectedDate = $event" type="date">
-            </div>
-            <div>
-                <p>Type:</p>
-                <select [(ngModel)]="selectedType" (click)=TypeChange() id="type">
-                    <option *ngFor="let type of allTypes;" [value]="type"> {{type}}</option>
-                </select>
-            </div>
-            <div>
-                <p>Doctor:</p>
-                <select *ngIf="displayDoctors.length!=0" [(ngModel)]="selectedDoctor" id="doctor">
-                    <option *ngFor="let doctor of displayDoctors;" [value]="doctor.id"> {{doctor.name}} {{doctor.surname}}</option>
-                </select>
-            </div>
-            <div>
-                <p>Priority:</p>
-                <input [ngModel]="selectedPriority" type="radio" id="doctor" value="doctor" name="priority" (ngModelChange)="selectedPriority = $event">
-                <label>Doctor</label>
-                <input [ngModel]="selectedPriority" type="radio" id="date" value="date" name="priority" (ngModelChange)="selectedPriority = $event">
-                <label>Date</label>
-            
-                <button class="btn btn-primary btn-block" (click)="SearchTerms()" [disabled]="!RequestValidation()">Search for free terms</button>
-            </div>
+<div class="main-content">
+    <div class=" container-fluid card col-md-8">
+        <div class="header title">
+            <h2>Make an appointment</h2>
         </div>
-        <div>
-            <div *ngIf="searchClicked == true">
-                <table class="table">
-                    <ng-container *ngFor="let terms of allFreeTerms.freeTermsList">
-                        <tr *ngFor="let time of terms.terms">
-                            <td><b>{{time}}</b></td>
-                            <td>{{terms.date | date: 'dd/MM/yyyy'}}</td>
-                            <td>{{doctorType[terms.doctor.doctorType]}}</td>
-                            <td>{{terms.doctor.name}} {{terms.doctor.surname}}</td>
-                            <input class="radio" type="radio" name="term" (click)="InsertValues(time, terms.date, terms.doctorId)">
-                        </tr>
-                    </ng-container>
-                </table>
-                <button [disabled]="!AddTermValidation()" class="btn btn-primary btn-block" (click)="SubmitTerm()">Submit</button>
+        <div style="margin-top: 30px">
+            <div class="form-group">
+                <div class="col-md-4 form-group">
+                    <p>Date:</p>
+                    <input class="form-select" [ngModel]="selectedDate" (ngModelChange)="selectedDate = $event" type="date">
+                </div>
+                <div class="col-md-4 form-group">
+                    <p>Type:</p>
+                    <select class="form-select" [(ngModel)]="selectedType" (click)=TypeChange() id="type">
+                        <option *ngFor="let type of allTypes;" [value]="type"> {{type}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group">
+                    <p>Doctor:</p>
+                    <div *ngIf="displayDoctors.length!=0">
+                        <select class="form-select" [(ngModel)]="selectedDoctor" id="doctor">
+                            <option *ngFor="let doctor of displayDoctors;" [value]="doctor.id"> {{doctor.name}} {{doctor.surname}}</option>
+                        </select>
+                    </div>
+                    <div *ngIf="displayDoctors.length==0">
+                        <select class="form-select" [(ngModel)]="selectedDoctor" id="doctor" disabled>
+                            <option *ngFor="let doctor of displayDoctors;" [value]="doctor.id"> {{doctor.name}} {{doctor.surname}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <p>Priority:</p>
+                    <div class="form-check">
+                        <input class="form-check-input" [ngModel]="selectedPriority" type="radio" id="doctor" value="doctor" name="priority" (ngModelChange)="selectedPriority = $event">
+                        <label class="form-check-label">Doctor</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" [ngModel]="selectedPriority" type="radio" id="date" value="date" name="priority" (ngModelChange)="selectedPriority = $event">
+                        <label class="form-check-label">Date</label>
+                    </div>
+                
+                    <button class="btn btn-primary btn-block" style="margin-top: 30px" (click)="SearchTerms()" [disabled]="!RequestValidation()">Search for free terms</button>
+                </div>
+            </div>
+            <div class="form-group" style="margin-top: 30px">
+                <div *ngIf="searchClicked == true">
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-striped form-group">
+                            <ng-container *ngFor="let terms of allFreeTerms.freeTermsList">
+                                <tr *ngFor="let time of terms.terms">
+                                    <td><b>{{time}}</b></td>
+                                    <td>{{terms.date | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{doctorType[terms.doctor.doctorType]}}</td>
+                                    <td>{{terms.doctor.name}} {{terms.doctor.surname}}</td>
+                                    <input class="form-check-input" class="radio" type="radio" name="term" (click)="InsertValues(time, terms.date, terms.doctorId)">
+                                </tr>
+                            </ng-container>
+                        </table>
+                    </div>
+                    <div class="col-md-4 form-group" style="margin-top: 30px">
+                        <button [disabled]="!AddTermValidation()" class="btn btn-primary btn-block" (click)="SubmitTerm()">Submit</button>
+                    </div>
 
-                <!-- <table class="table">
-                    <tr *ngFor="let term of allFreeTerms">
-                        <td><b>{{term}}</b></td>
-                        <td>{{freeTerms.date | date: 'dd/MM/yyyy'}}</td>
-                        <td>{{doctorType[freeTerms.doctor.doctorType]}}</td>
-                        <td>{{freeTerms.doctor.name}} {{freeTerms.doctor.surname}}</td>
-                        <input class="radio" type="radio" name="term" value={{term}} [ngModel]="selectedTerm" (ngModelChange)="selectedTerm = $event">
-                    </tr>
-                    <button [disabled]="!AddTermValidation()" class="btn btn-primary btn-block" (click)="SubmitTerm()">Submit</button>
-                </table> -->
+                    <!-- <table class="table">
+                        <tr *ngFor="let term of allFreeTerms">
+                            <td><b>{{term}}</b></td>
+                            <td>{{freeTerms.date | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{doctorType[freeTerms.doctor.doctorType]}}</td>
+                            <td>{{freeTerms.doctor.name}} {{freeTerms.doctor.surname}}</td>
+                            <input class="radio" type="radio" name="term" value={{term}} [ngModel]="selectedTerm" (ngModelChange)="selectedTerm = $event">
+                        </tr>
+                        <button [disabled]="!AddTermValidation()" class="btn btn-primary btn-block" (click)="SubmitTerm()">Submit</button>
+                    </table> -->
+                </div>
             </div>
         </div>
     </div>
