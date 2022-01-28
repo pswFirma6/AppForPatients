@@ -25,12 +25,53 @@
         </div>
 
     </div>
-
+    
 </section>
 
 
 <!-- home section ends -->
+<section>
+  <ngb-carousel class="carousel-container">
+    <ng-template ngbSlide *ngFor="let ad of Ads">
+      <div class="picsum-img-wrapper">
+        <img class="carousel-image" [src]="defaultImageUrl" alt="Random first slide">
+      </div>
+      <div class="carousel-caption crsl-background" style="top:40%; bottom: auto">
+        <h3>Apoteka: {{ad.pharmacyName}}</h3>
+        <h2><b>{{ad.title}}</b></h2>
+        <p>{{ad.content}}</p>
+      </div>
+    </ng-template>
 
+    <!-- <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img class="carousel-image" [src]="defaultImageUrl" alt="Random first slide">
+      </div>
+      <div class="carousel-caption crsl-background">
+        <h3>First slide label</h3>
+        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img class="carousel-image" [src]="defaultImageUrl" alt="Random second slide">
+      </div>
+      <div class="carousel-caption crsl-background">
+        <h3>Second slide label</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper crsl-background">
+        <img class="carousel-image" [src]="defaultImageUrl" alt="Random third slide">
+      </div>
+      <div class="carousel-caption crsl-background">
+        <h3>Third slide label</h3>
+        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      </div>
+    </ng-template> -->
+  </ngb-carousel>
+</section>
 <!-- about section start  -->
 
 <section class="about" id="about">

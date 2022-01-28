@@ -10,11 +10,15 @@ export interface DialogData {
 })
 export class PresciptionsComponent {
   
-
+  appointments: any = null;
+  title: string = '';
   constructor(
     public dialogRef: MatDialogRef<PresciptionsComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+  ) { 
+    this.appointments = data.appointments;
+    this.title = data.title;
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

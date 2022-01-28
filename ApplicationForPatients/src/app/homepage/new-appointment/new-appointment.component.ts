@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import Stepper from 'bs-stepper';
 import {NgbDateStruct, NgbCalendar, NgbTypeahead, NgbDate} from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
@@ -14,6 +14,9 @@ import { Doctor } from 'src/app/shared/doctor';
 import { PatientService } from 'src/app/service/patient.service';
 import { PatientJWT } from 'src/app/shared/patientJWT';
 import jwt_decode from 'jwt-decode';
+import { EventService } from 'src/app/service/event/event.service';
+import { EventAppointment } from 'src/app/shared/events/EventNewAppointment';
+import { StepEvent } from 'src/app/shared/events/StepEvent';
 
 @Component({
   selector: 'app-new-appointment',
@@ -21,7 +24,7 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./new-appointment.component.css']
 })
 
-export class NewAppointmentComponent implements OnInit {
+export class NewAppointmentComponent implements OnInit, OnDestroy {
 
   name = 'Angular';
   private stepper: Stepper;
@@ -53,14 +56,103 @@ export class NewAppointmentComponent implements OnInit {
   decoded: any;
   patient: PatientJWT;
   public tableData2: any;
+  eventAppointment: EventAppointment;
+  startTime: any;
+  endTime: any;
+  stepEvent: StepEvent;
+  step: any;
+  appointmentCreated: boolean;
+  previousEvent: StepEvent;
+  endTimeInnerEvent: any;
+  startTimeInnerEvent: any;
+
   //isDisabled: any; 
  
 
   constructor(private calendar: NgbCalendar, private formBuilder: FormBuilder, 
             private notifyService : NotificationService, private doctorService : DoctorService, 
             private appointmentService : AppointmentService, private router: Router,
-            private patientService : PatientService) {
+            private patientService : PatientService, private eventService : EventService,
+            private elementRef:ElementRef) {
           
+  }
+  
+  ngAfterViewInit() {
+    
+    this.stepEvent = new StepEvent();
+
+    this.elementRef.nativeElement.querySelector('#stepper1')
+      .addEventListener('shown.bs-stepper', (event: any) => {
+        this.triggerEventForStep(event.detail.indexStep);
+      })
+
+  }
+
+  triggerEventForStep(step:any){
+
+    //prvi ulaz
+    if(this.previousEvent === undefined){
+      this.stepEvent.applicationName = "AppForPatient";
+      this.stepEvent.clickTime = new Date();
+      this.startTimeInnerEvent = performance.now();
+      this.setStepEventName(step);
+      this.previousEvent = new StepEvent();
+    } else {
+      this.previousEvent = new StepEvent();
+      this.previousEvent.applicationName = this.stepEvent.applicationName;
+      this.previousEvent.name = this.stepEvent.name;
+      this.previousEvent.clickTime = this.stepEvent.clickTime;
+      
+      this.endTimeInnerEvent = performance.now();
+      var number = Number(this.endTimeInnerEvent - this.startTimeInnerEvent);
+      this.previousEvent.timeSpan = number;
+      
+      this.eventAppointment.eventsStep.push(this.previousEvent);
+
+      this.stepEvent = new StepEvent();
+      this.stepEvent.applicationName = "AppForPatient";
+      
+      this.endTimeInnerEvent = 0;
+      this.startTimeInnerEvent = performance.now();
+      this.stepEvent.clickTime = new Date();
+      this.setStepEventName(step);
+
+    }
+
+  }
+
+  setStepEventName(step: any){
+    if(step === 0) {
+      this.stepEvent.name = 'Date';
+    } else if (step === 1) {
+      this.stepEvent.name = 'Speciality';
+    } else if (step === 2) {
+      this.stepEvent.name = 'Doctor';
+    } else {
+      this.stepEvent.name = 'Term';
+    }  
+  }
+
+
+  ngOnDestroy(): void {
+    this.submitAppointmentEvent();
+  }
+
+  submitAppointmentEvent(){
+
+    if(this.stepEvent !== undefined){
+      this.endTimeInnerEvent = performance.now();
+      var number = Number(this.endTimeInnerEvent - this.startTimeInnerEvent);
+      this.stepEvent.timeSpan = number;
+      this.eventAppointment.eventsStep.push(this.stepEvent);
+    }
+
+    this.endTime = performance.now();
+    var number = Number(this.endTime - this.startTime);
+    this.eventAppointment.timeSpan = number;
+    this.eventAppointment.appointmentCreated = this.appointmentCreated;
+    this.eventService.AddAppointmentEvent(this.eventAppointment).subscribe( response => { });
+
   }
 
   ngOnInit() {
@@ -89,12 +181,21 @@ export class NewAppointmentComponent implements OnInit {
     this.doctors = [];
     this.freeTerms = new FreeTerms;
     this.term = new Term;
+    
+    this.stepEvent = new StepEvent;
+    this.eventAppointment = new EventAppointment;
+    this.eventAppointment.eventsStep = [];
+    this.eventAppointment.name = 'New appointment in four steps';
+    this.eventAppointment.applicationName = 'AppForPatient';
+    this.eventAppointment.clickTime = new Date();
+    this.startTime = performance.now();
 
     this.stepper = new Stepper(document.querySelector('#stepper1')!, {
       linear: false,
       animation: true
     })
 
+  
     this.tableData2 = {
       headerRow: [ 'Date', 'Time' ]
     }
@@ -108,6 +209,7 @@ export class NewAppointmentComponent implements OnInit {
   getFreeDoctorTerms(doctor: Doctor): void {
       
       this.selectedDoctor = doctor;
+      this.eventAppointment.doctorId = doctor.id;
       this.term.doctorId = doctor.id;
       this.term.startDate = this.date;
 
@@ -129,7 +231,7 @@ export class NewAppointmentComponent implements OnInit {
     });
   }
 
-  public onChangeDoctor(event: any): void {    
+  public onChangeDoctor(event: any): void {   
     this.selectedDoctorId = event;
   }
 
@@ -164,12 +266,11 @@ export class NewAppointmentComponent implements OnInit {
 
     this.appointmentForm.startTime = this.selectedFreeTerm;
    
-
     this.appointmentService.addNewAppointment(this.appointmentForm).subscribe( (response) => {
-     
-      this.showToasterSuccess()
+      this.showToasterSuccess();
+      this.appointmentCreated = true;
       setTimeout(() => this.router.navigate(['/patient/medicalrecords']), 500);
-    })
+    });
     
   }
 
