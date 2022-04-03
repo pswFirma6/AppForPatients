@@ -4,15 +4,17 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ToastrModule } from "ngx-toastr";
-import { AppointmentPriorityComponent } from "../appointment-priority/appointment-priority.component";
-import { NavbarComponent } from "../components/navbar/navbar.component";
-import { SidebarComponent } from "../components/sidebar/sidebar.component";
+import { AppointmentPriorityComponent } from "../appointment/appointment-priority/appointment-priority.component";
 import { FeedbackComponent } from "../feedback/feedback.component";
 import { MedicalrecordsComponent } from "../medicalrecords/medicalrecords.component";
-import { NewAppointmentComponent } from "../new-appointment/new-appointment.component";
-import { TakesurveyComponent } from "../takesurvey/takesurvey.component";
-import { ViewfeedbackComponent } from "../viewfeedback/viewfeedback.component";
+import { NewAppointmentComponent } from "../appointment/new-appointment/new-appointment.component";
+import { SurveyComponent } from "../survey/survey.component";
+import { HospitalFeedbacksComponent } from "../hospital-feedbacks/hospital-feedbacks.component";
 import { HomepageLayoutRoutes } from "./homepage-layout.routing";
+import { NavbarComponent } from "../basic-layout/navbar/navbar.component";
+import { SidebarComponent } from "../basic-layout/sidebar/sidebar.component";
+import { DatePickerComponent } from "../appointment/date-picker/date-picker.component";
+
 
 
 @NgModule ({
@@ -28,17 +30,18 @@ import { HomepageLayoutRoutes } from "./homepage-layout.routing";
         NavbarComponent,
         SidebarComponent,
         FeedbackComponent,
-        ViewfeedbackComponent,
+        HospitalFeedbacksComponent,
         MedicalrecordsComponent,
         NewAppointmentComponent,
-        TakesurveyComponent,
-        AppointmentPriorityComponent
+        SurveyComponent,
+        AppointmentPriorityComponent,
+        DatePickerComponent
     ],
     exports: [
         NavbarComponent,
         SidebarComponent,
         FeedbackComponent,
-        
+        SurveyComponent,
         
     ]
 })

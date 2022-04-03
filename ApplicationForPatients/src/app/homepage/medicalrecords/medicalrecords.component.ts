@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PatientService } from 'src/app/service/patient.service';
-import { viewAppointmentService } from 'src/app/service/viewAppointments.service';
+import { viewAppointmentService } from 'src/app/homepage/medicalrecords/services/viewAppointments.service';
 import { AppointmentService } from 'src/app/service/appointment';
 import { Appointment } from 'src/app/shared/appointment';
 import jwt_decode from 'jwt-decode';
 import { MedicalRecord } from 'src/app/shared/medicalRecord';
 import { MatDialog } from '@angular/material/dialog';
-import { PresciptionsComponent } from 'src/app/presciptions/presciptions.component';
+import { PresciptionsComponent } from 'src/app/homepage/medicalrecords/presciptions/presciptions.component';
 
 
 @Component({

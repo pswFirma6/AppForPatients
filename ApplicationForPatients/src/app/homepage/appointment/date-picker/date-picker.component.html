@@ -1,0 +1,17 @@
+<label for="date">Appointment date</label>
+<p>Pick a date for the appointment</p>
+
+<div style="text-align: center;">
+  <ngb-datepicker name="date"
+    [(ngModel)]="model"
+    (dateSelect)="setDate($event)"
+    [displayMonths]="displayMonths" 
+    [navigation]="navigation"
+    [showWeekNumbers]="showWeekNumbers" 
+    [outsideDays]="outsideDays"
+    [minDate]= "today"
+    >
+  </ngb-datepicker>   
+</div>
+
+ 

@@ -11,16 +11,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LandingpageLayoutComponent } from './landingpage/landingpage-layout/landingpage-layout.component';
 import { LandingpageLayoutModule } from './landingpage/landingpage-layout/landingpage-layout.module';
 import { RouterModule } from '@angular/router';
-import { RegistrationLayoutComponent } from './registration/registration-layout/registration-layout.component';
-import { RegistrationLayoutModule } from './registration/registration-layout/registration-layout.module';
 import { NotFoundComponent } from './page-not-found/not-found/not-found.component';
-import { ActivationComponent } from './registration/activation/activation.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './login/login.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthGuard } from './service/guards/auth-guard.service';
-import { PresciptionsComponent } from './presciptions/presciptions.component';
+import { PresciptionsComponent } from './homepage/medicalrecords/presciptions/presciptions.component';
 import { MaterialModule } from './material.module';
+import { RegistrationLayoutComponent } from './login-register/registration/registration-layout/registration-layout.component';
+import { ActivationComponent } from './login-register/registration/activation/activation.component';
+import { LoginComponent } from './login-register/login/login.component';
+import { RegistrationLayoutModule } from './login-register/registration/registration-layout/registration-layout.module';
 
 
 

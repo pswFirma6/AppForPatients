@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Feedback } from 'src/app/shared/feedback';
 import { FeedbackService } from 'src/app/service/feedback.service';
-import { LandingpageService } from 'src/app/service/landingpage.service';
+import { LandingpageService } from 'src/app/landingpage/landingpage-layout/services/landingpage.service';
 import { Ad } from 'src/app/shared/Ad';
 
 @Component({
