@@ -16,11 +16,11 @@ export class DatePickerComponent implements OnInit {
     outsideDays = 'visible';
     model: NgbDateStruct;
     today: any;
-    
+    checkDate: any;
     selectedFreeTerm: any;
     clicked: boolean;
 
-    @Output() dateEmit = new EventEmitter<Date>();
+    @Output() dateEmit = new EventEmitter<any>();
 
     ngOnInit(): void {
         
@@ -37,7 +37,7 @@ export class DatePickerComponent implements OnInit {
     setDate(date: NgbDate){
         this.date = new Date(date.year, date.month - 1, date.day); 
         this.checkDate = false;
-        this.dateEmit.emit(this.date);
+        this.dateEmit.emit({"date": this.date, "check": this.checkDate});
     }
 
     setTime(time: any){

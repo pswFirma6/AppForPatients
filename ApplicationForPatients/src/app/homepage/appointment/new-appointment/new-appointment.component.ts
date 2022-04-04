@@ -65,7 +65,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
             private notifyService : NotificationService, private doctorService : DoctorService, 
             private appointmentService : AppointmentService, private router: Router,
             private patientService : PatientService, private eventService : EventService,
-            private elementRef:ElementRef, private datePicker: DatePickerComponent) {
+            private elementRef:ElementRef) {
           
   }
   
@@ -209,8 +209,9 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
   }
 
-  setDate(event: Date): void {
-    this.date = event;
+  setDate(event: any): void {
+    this.date = event['date'];
+    this.checkDate = event['check'];
   }
 
   setTerm(term: any): void {
